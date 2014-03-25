@@ -128,6 +128,10 @@ git stash clear //deletes all stashes
 
 
 //.........Using Remotes.......................
+git clone <place-to-clone>
+	//optionally add <local-name> on the end to change
+	//the name locally
+	//-b lets you pick a remote branch to clone
 git fetch //pulls from remote to origin/master branch
 git remote add origin <remote-location> 
 	//add a location of a remote 
@@ -135,3 +139,7 @@ git remote add origin <remote-location>
 git push -u origin master 
 	//for initial push use u and pushes will
 	//default to that remote afterward
+git branch -r /show remote branches
+git config branch --set-upstream <branch> <origin/branch>
+	//turns on tracking for a branch
+
