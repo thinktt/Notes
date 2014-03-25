@@ -1,0 +1,260 @@
+Core functionality 
+jQuery functions and commenly used utilities
+
+Selection and Traversal
+get stuff out of documents
+navigate the document
+
+Maniupation & CSS
+Editing and changing content of the document
+working with CSS data
+
+Events
+Modern DOM events
+
+Effects
+Basic animatons and effects
+
+AJAX
+Loading content from remote pages
+dealing with JSON
+
+User Interace
+Common UI widgets
+
+Extensibilyt
+Enables Plugins
+
+
+
+..................Selection and Traversal.............
+..Selectors..
+tagname
+#identifier
+.className
+tag.className
+tag#id.className
+* (everthing on the page)
+
+..More Advanced..
+selector, selector (find multiple selectors)
+.class1.class2 (element with class1 and class2)
+parent>child   (find all child element that are direct children of parent)
+ancstor descendant (reverse of above?)
+prev + next (find all next elements that are next to prev element)
+prev ~ sibling (find siblings that come after prev and match sibling selector)
+
+
+................Filters.........................
+Basic (first, last, even, odd)
+Content (filter elements based on content, like strings)
+Visibility (hidden or visible)
+Atrribute (select by attributes)
+Child (relationship to parent)
+Form (good for processing elemnts on forms)
+
+...........Basic Filters.........
+:first
+:last
+:even
+:odd
+:eq(n) (get a specific index of result)
+:gt(n) (greater than index)
+:lt(n) (less than the index)
+:header (all header elements)
+:animated (all elements being animaged by jQuery)
+:not(selector)
+
+.........Attribute Filters...........
+[attribute]
+[attribut=value]
+[attribute!=value]
+[atribute^=value] (has specific attribute and value stars with given value)
+[atribute$=value] (has specific attribute and value ends with given value) 
+[attribute*=value] (has specific attribute and value contains give value)
+[attrFilter1][attrFilterN] get elements that match all these attribute filters 
+
+..........Content Filters...........
+:contains(text)
+:empty
+:has(selector)
+:parent
+
+........Visibility Filters........
+:visible
+:hidden
+
+........Child Filters........
+:nth-child(index)
+:nth-child(even)
+:nth-child(odd)
+:nth-child(equation)
+:first-child
+:last-child
+:only-child
+
+.........Form Selectors.......
+:input (input, select, textarea and button elements)
+:text (text elements)
+:password
+:radio
+:checkbox
+:submit
+:reset
+:image
+:button
+:file (file upload elements)
+
+.........Form Filters.......
+:enable
+:disable
+:checked
+:selected
+
+.......Common Traveral Functions.......
+size().length (the number of elements in the jQuery result set)
+get() (returns an array of DOM elements)
+get(index) (return a specific DOM element)
+find(expression) (searches for descendent element that macth the expression)
+each(fn) (execute a function within the context of every matched element)
+
+
+...........jQuery Statement Chaining...........
+$(selector).fn1().fn2().fn3(); 
+
+
+
+
+
+......Creating, Setting, Getting Content......
+var myStr = '<p>Howdy!</p>'
+var newP = $(myStr);
+
+
+html() (returns current HTML content of first matched element)
+html(newcontent) (sets html content on all matched elements)
+text() (returns text content of frist matched element)
+text(newText) (sets the text content of all matched elements)
+
+
+.........Manipulationg Attributes..........
+attr(name)  (accesses property of first matched element)
+attr(properties) (sets a series of attributes on all matched elements)
+attr(key, value) (sets a single property of all matched elements)
+attr(key, fn)  (like above but uses a function to compute the value)
+removeAttr(name) (removes the names attribute from all matched elements)
+
+
+........Inserting Content...............
+append(content) (appends content to the inside of every matched element)
+appendTo(selector) (appedn matched element to another set of elements)
+prepend(content) (prepend content to inside of every matched element)
+prepentTo(selector) (put at the beginning of inside of matches)
+after(content) (insert content after each matched element)
+before(content) (insert content before each matched element)
+insertAfter(selector) (insert matched lements afte specified set of elements)
+insertBefore(selector) (insert all before specified set of elements)
+
+
+.......Wrapping, Replacing, Removing Content.......
+wrap(htlm) (wraps each match with speified HTML content)
+wrap(element) (wraps each mathched element with specified element)
+wrapAll(html) (wraps all matches into with specified HTML content)
+wrapAll(element) (wraps all matches into a single wrapped element)
+wrapInner(html)
+wrapInner(element)
+replaceWith(content) 
+reaplaceAll(selector)
+empty() (wipes out everything in the elements)
+remove() (kills the elements)
+clone() (clones elements but does not get event handlers)
+clone(bool) (if you pass true it also gets event handlers)
+
+
+..................CSS, CSS Classes.............
+css(name) (returns value of names CSS property for matched elements)
+css(properties) (uses object notation to do multiple poperties and values)
+css(property, value) (sets a single propertie for all matched elements)
+
+addClass(class) Adds class to a mathced element
+hasClass(class) Returns true if class is present on at least one match
+removeClass(class) Removes all the specifide classes from mathced elements
+toggleClass(class)  Add class if present, removes it if not
+toggleClass(class, switch) Adds specified class using swithc as conditional
+
+...............CSS Position Function.................
+ofset() (Gets the current offset of the first matched element in pixels)
+offsetParent() (Returns a jQuery collection with the position)
+postion() (Gets top and left positon of the elemnt relative to parent offset)
+scrollTop() (gets teh scroll top offset of first matched element)
+scrollTop(val) (sets scrool top offset of given value on all matches)
+scrollLeft()  (gets scrlool left offset of the first matched element)
+scrollLeft(val) (set the scroll left offset to the given value on all matches)
+
+.............CSS Sizing Information......................
+height() (gets computed pixel height of first match)
+height(val) (sets height for every mathced element)
+width() (gets current width in pixels of first match)
+width(val) (sets the width for every match)
+innerHeight() (gets inner height for first matched element)
+innerWidth() (gets inner width of irsmt match)
+outerHeight(margin) (gets outer height including, margin true included margin)
+outerWidth(margin) (Gets the outer width, margin true also includes margin)
+
+...........Data Methods..................
+data(key, value) (addd datat to an element)
+data(obj) (same as above just send a whole object)
+data(key) (get the data for the key)
+removeData() (clears all data in added to the element)
+removeData(key, value)
+
+..............Events...............
+Binding/Unbining
+Unified Event Object
+Cenvenience Features
+
+on()
+
+one(type, data, handler) (event bound but only triggered once)
+trigger(event, data) (used to trigger an event )
+triggerHalder(event, data) 
+
+
+...........jQuery Event Object..........
+type (type of event, click e.g.)
+target (element tha tissued the event)
+data (data passed to bind function)
+pageX, pageY (cordinates of mouse when event happend, doc relevant)
+reult (value returned by the last handler function)
+timestam (when the event occured)
+preventDefalut() (prevent the browser from executing efault action)
+isDefaultPrevented() (returns whetehr preentDefault() is enabled)
+stopPropagation() (stops bubling of event ot parent element)
+isPropagationStopped (is the above happening or not)
+
+
+
+
+...........Showing and Hiding Elements.......
+show() (display each match)
+show(speed, callback) (show all matched elements using animation)
+hide() (hides macthes)
+hide(speed, callback) (hides using animation)
+toggle() (toggles displying each of the set of mathced elements)
+toggle(switch) (hides or shows elements based on swith, t = show f=hide)
+toggle(speed, callback) (above with animation)
+
+fadeIn(speed, callback)
+fadeOut(speed, callback)
+fadeTo(speed, opacity, callback)
+
+slideDown(speed, callback)
+slideUP(speed, callback)
+slideToggle(speed, callback)
+
+animate(params, duration, easing, callback)
+
+
+animate(prams, options)
+stop()
+

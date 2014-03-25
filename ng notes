@@ -1,0 +1,173 @@
+Angular Elements
+Directives
+Angular Expressions
+Controllers
+Services
+Filters
+Views - NO! It's just HTML 
+$scope
+$http
+$rescource
+
+
+.........................
+Invoking Angular
+1. Load js
+2. use ng-app directive (tell angular what part of DOM to use)
+
+Model View Controller - All Agular apps have: 
+* A model containing data, representing current state of app
+* Views that display this data
+* Controllers that manage the relationship between model and views
+
+ng-change(callback) (when field changes call callback)
+ng-submit (a form attr, set equal to callback, default post will be stopped )
+ng-click (attr, set equal to a callback for click event)
+
+ng-repeat = "thing in things" (make elements by iterating trhough an object) 
+$first, $middle, $last, $repeat (some usable variables during the iteration)
+
+
+$scope.$watch(thingToWatch, callback) (watch for var change then run callback)
+
+ng-src (use instead of src on <img> tags )
+ng-href (used instead of href for <a> tags)
+
+
+............................................
+Angular Expressions
+
+simpel math  (+, -, /, *, %), 
+make comparisons (==, !=, >, <, >=, <=), 
+perform boolean logic (&&, ||, !) 
+and bitwise operations (\^, &, |). 
+functions you expose on $scope in your controller and you can 
+reference arrays and object notation ([ ], { }, .)
+null evaluated expressions will simply do nothing 
+
+
+........................
+Conroller Responsibilities
+1. Set up intitial state in your app
+2. Expose model and fuctions to view (UI template) through $scope
+3. Watch other parts of the model and take action
+
+Good Practice: Create one controller per functional area i your view
+
+Two Ways to Associate a Controller
+1. Specify in View/Template using ng-controller
+2. Associating it with dynamically loaded DOM template fragment 
+	(done through routes and views)
+
+Nested Controllers
+<div ng-controller="ParentController">
+  <div ng-controller="ChildController">...</div>
+</div>
+Child controller will have access to parents $scope
+
+..............................
+Model
+Indirect ways to set up model from the template
+1. expressions, setting prperties directly in scope of the element
+2. using ng-model in form field, creates bi-directional data binding
+
+$watch(watchFn, watchAction, deepWatch)
+watchFn (string or with angular expression or function that returns watch value
+  		also can take a $scope function)
+watchAtion (function called whne watch watchFn ghanges)
+deepWatch (bool used when need to watch a whole array or object)
+
+$watch returns function that will de-register the watch when run:
+deReg = $watch(); 
+deReg() (kills the watch)
+$watch with only watchFn passed will evaluate 
+	evertime angular evaluates  the page
+
+
+...................
+Module Object
+
+provider(name, Object OR constructor())
+	if passed an object include $get in it, that returns instance of object
+	otherwise Angular assumes you are passing a constructor
+factory(name, $getFunction()) 
+	(non configurable service with complex creation logic)
+service(name, contsructor)
+	(non-configurable service with simple creation logic)
+
+defining: 
+var appMod = angular.module('app', ['SnazzyUIWidgets', 'SuperDataSync']);
+
+................
+Filters
+{{ expression | filterName : parameter1 : ...parameterN }}
+creating your own
+module.filter('name', filterFn(input){})
+
+Routes
+var module = angular.module('someModule', ['ngRoute']); 
+
+someModule.config(function($routeProvider) {
+  $routeProvider.
+    .when('url', {controller:aController, templateUrl:'/path/to/template'})
+    .when(...other mappings for your app...)
+    …
+    .otherwise(...what to do if nothing else matches...);
+)};
+
+ng-view (used in the teplate to show where the view goes)
+
+
+........................
+Talking to Servers
+function ShoppingController($scope, $http) {
+  $http.get('/products').success(function(data, status, headers, config) {
+    $scope.items = data;
+  });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Services are single instance object used to carry out task 
+	necesarry to support application functioning
+	may be passed between controllers.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

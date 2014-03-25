@@ -1,0 +1,137 @@
+working directory
+staging index
+repository 
+HEAD //a pointer, points to tip of current branch in the repo
+
+//........refering to commits aka 'tree-ish' 
+-HEAD^ //parent of the head
+-HEAD~ //first ancester of the HEAD
+-HEAD~<N>//Nth ancester of the HEAD
+-HEAD^^//grandparent of the HEAD
+//HEAD, <sha1>, master all work the same as above
+git ls-tree <tree-ish> // shows listing of files for that reference
+git ls-tree <tree-ish> <file> // shows files or directorories for ref
+
+
+git init //initialize a directory for git
+git status //shows status of all branches 
+
+
+git log//shows all the commits in the repo 
+	//--oneline will give a concise list
+	//-<N> will show N commits back only
+	//--since="y-m-d"
+	//--until="y-m-d"
+	//--author="Author"
+	//--grep="regEx"
+	//<tre-ish>.. <file> range for file
+	//-p shows details in log
+	//--stat --summary shows stats for changes
+git show <tree-ish>
+	//--format=oneline
+
+
+git diff //show differences in working dir and repo
+	//use 'f' and 'b' to scroll forward and backward
+	//<shift S return> wrap lines
+	//-w ignore spaces
+	//<branch>..<branch> will show diffs of two branches
+	//<tre-ish>..<tree-ish> same as above but can be a tree-ish
+git diff --color-word // colors output in a different way 
+git diff --staged //only show difference in stagin index and repo
+
+
+git add file.txt //can use '.' also for everything, 
+	//this adds file to staging index
+git rm //remove a file, not sure how this works
+	//if you rename a file then use 'git add' to the new filname and 
+	//'git rm' to the old filname you can 'git status' and it will 
+	//register in the staging area as a renamed file 
+git mv //use this to rename a file directly using git
+
+git commit -m "message" //puts staging index stuff into repository
+git commit -a //add to staging index and commit all at once
+git commit --amend -m "message" //ammends staged files to last commit
+
+git revert <commit#> //reverts to an old commit with a new commit
+	//-n option lets you just stage the commit not commit atuomatically
+git reset HEAD <file> //unstage a file from staging area
+git reset <commit#> //moves the head pointer to specific commit (Dangerous)
+	//--soft option does not change stagint index or working dir
+	//--mixed option (default) changes staging index to match repo
+	//  does not change working directory 
+	//--hard option wipes out everything and goes back to commit
+git clean //removes files in working dir that are not in repo
+	//-n just tells you what it will remove
+	//-f acutally removes stuff
+
+git push -f //pushes to the remote current state of repo 
+	//after a hard reset
+
+
+
+
+
+
+project/.gitignore //stuff in working dir for git to ignore
+	//can use just file names but aslo some basic regEx 
+	//can also negate expressions using '!'
+	//'#' can be used for comments
+	//git will only ingnore files it's not already tracking
+	//use 'git rm --cached <file>' to stop tracking 
+git config --global core.excludesfile ~/.gitignore_global 
+	//point to a global ignore file for git
+
+//to track a empty dir convention says place .gitkeep 
+//in the dir (just an empty file)
+
+//................Branching..........................
+git bracnh <name> //makes a new branch
+git branch // list branches
+git branch --merged// shows all branches that are included in 
+	//current branch
+git branch -m <name> <new-name>//rename branch
+git branch -d <branch> //delete branch
+	//-D used if you want to delete a branch that is not merged
+
+
+git checkout --<file> //reset a file from to working from repo
+git checkout <branch> //change repo branch
+	//cannot checkout branches if there areun commited files
+	//that will cause conficts in working dir
+	//-b will create and checkout the branch at same time
+git checkout <commit#> --<file> //grab a file from a particular commit
+	//places file in your staging area 
+
+git merge <branch> //merges branch into current branch
+	//--no-ff will force it to not fastforward but commit the merge
+	//--ff-only only do the merge if you can fastforward
+git merge --abort //abort merge
+
+
+//..........Merge Conflict Resolution.............
+Aborte Merge
+Resolve conflict maually
+Use a Megrge Tool
+
+git stash save "message"
+	//stash changes if for instance 
+	//you need to switch branch withouth commiting 
+	//curent changes 
+git stash list //list all stashes
+git stash show <stash> //show stash info
+	//-p show's differences verbosly
+git stash pop //puts stash in workin dir and removes stash
+git stash apply //same as above but no removal
+git stash drop <stash> //remove the stash
+git stash clear //deletes all stashes
+
+
+//.........Using Remotes.......................
+git fetch //pulls from remote to origin/master branch
+git remote add origin <remote-location> 
+	//add a location of a remote 
+	//origin could be replace with any name
+git push -u origin master 
+	//for initial push use u and pushes will
+	//default to that remote afterward

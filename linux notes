@@ -1,0 +1,83 @@
+/var/log/ (location of log files)
+$USER (USER envrioment variable)
+
+
+rm -r (remove directory and subs recursivley ad f to not promt)
+mv (move\rename a file)
+
+sudo adduser user --encrypt-home 
+
+chmod 1777 (make directory with full access for your own files not others)
+chown newUser file
+chown :newGroup filels
+
+awk -F":" '{ print "username: " $1 "\t\tuid:" $3 }' /etc/passwd 
+	(list all users in system)
+
+service ssh restart (restart ssh)
+
+usermod -a -G group user (add group to particlar user, the -a appends)
+groups user (show the groups the user is in)
+
+
+sudo netstat -tanp (look for user sessions)
+sudo kill -15 <process> (kill the ssh process)
+
+vim commands:
+v (start highlighting)
+d (cut)
+P (paste)
+
+
+using screen:
+Ctrl a d (detach)
+screen -ls (list screens)
+screen -r [particularSCreen] (reatttach a detached screen)
+
+upstart log directory: 
+/var/log/upstart/your-service-name.log.
+
+exec start-stop-daemon --start --chuid gandalf --chdir /home/gandalf/server/ --exec /home/gandalf/server/startServer.sh
+
+ start-stop-daemon --start --chuid gandalf --exec /home/gandalf/server/startServer.sh
+
+ $ echo $PATH
+
+/bin (common ternminal commands)
+/boot (start up stuff, kernel and boot loader config files)
+/dev (all device files, refer to actual devies)
+/home (for users home directories)
+/media (mount point for external media devices)
+/mnt (also mount point but more for things lik network drives)
+/opt (stores additonal software not handled by pakage managers)
+/proc (virtual filesystem, mechanism for kenrel to send info to processes)
+/root (super users home directory for when home is not available on boot)
+/sbin (contains super user commands)
+/srv (can contain data directories of services such as http)
+/tmp (place for temporary files)
+/usr (contains user utilites and replicates some root dir structures)
+/var (for variable data that changes rapidly such as logs)
+/lost+found (place where system puts things like corrupted files)
+/run (?? something to do with running processes?)
+
+
+mail -s "The subject goes here" jdoe 
+ (send mail to another useremust have mailutils installed)
+mail (check mail)
+
+
+sudo ufw enable (enable firewall)
+sudo ufw allow <port> 
+	//add /tcp to make it exclusive to tcp
+sudo ufw remove <rule> // remove a rule
+
+
+
+//github configuration 
+git config --global user.name "Your Name"
+git config --global user.email youremail@example.com
+
+
+//getting updates
+sudo apt-get update        # Fetches the list of available updates
+sudo apt-get dist-upgrade  # Installs updates
