@@ -142,4 +142,9 @@ git push -u origin master
 git branch -r /show remote branches
 git config branch --set-upstream <branch> <origin/branch>
 	//turns on tracking for a branch
+git pull //git fetch and git merge together
+git branch <branch> <origin/branch> 
+	//how to get a remote branch 
+git push origin --delete <remote-branch>
+	//delete a remote branch
 
