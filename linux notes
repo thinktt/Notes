@@ -81,3 +81,8 @@ git config --global user.email youremail@example.com
 //getting updates
 sudo apt-get update        # Fetches the list of available updates
 sudo apt-get dist-upgrade  # Installs updates
+
+//mongodb important dirs and useful stuff
+/var/log/mongodbd
+/var/lib/mongodb
+ps -ef | grep mongo
