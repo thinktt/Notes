@@ -1,0 +1,14 @@
+password validation
+!"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~ (and space)
+a-zA-Z0-9!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
+^[\u0020-\u007E]{8,256}$
+
+ 
+username
+ ^[a-z][a-z0-9._-]{3,16}$
+
+email
+ ^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$
+
+
+
