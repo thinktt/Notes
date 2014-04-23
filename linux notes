@@ -86,3 +86,6 @@ sudo apt-get dist-upgrade  # Installs updates
 /var/log/mongodbd
 /var/lib/mongodb
 ps -ef | grep mongo
+
+//shutdown the system
+sudo shutdown -h now
