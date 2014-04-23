@@ -1,0 +1,4 @@
+
+//...................The Mongo Console................
+//delete a collection
+db.collectionName.drop();
