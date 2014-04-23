@@ -2,3 +2,15 @@
 //...................The Mongo Console................
 //delete a collection
 db.collectionName.drop();
+
+
+//..............Other Stuff.......................
+//restarting after crash
+sudo rm /var/lib/mongodb/mongod.lock
+mongod --repair
+sudo service mongodb start
+
+//mongodb important dirs and useful stuff
+/var/log/mongodbd
+/var/lib/mongodb
+ps -ef | grep mongo

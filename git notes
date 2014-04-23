@@ -57,7 +57,7 @@ git revert <commit#> //reverts to an old commit with a new commit
 	//-n option lets you just stage the commit not commit atuomatically
 git reset HEAD <file> //unstage a file from staging area
 git reset <commit#> //moves the head pointer to specific commit (Dangerous)
-	//--soft option does not change stagint index or working dir
+	//--soft option does not change staging index or working dir
 	//--mixed option (default) changes staging index to match repo
 	//  does not change working directory 
 	//--hard option wipes out everything and goes back to commit
