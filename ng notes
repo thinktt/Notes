@@ -26,8 +26,17 @@ ng-bind = 'data'
   //your index.html to keep users from seeing braces  
   //while angular is still loading
 
+ng-model = "propertyName"
+  //binds input, select textarea (or custom form control) to a 
+  //property on the $scope object
+
+ng-change = "callback()" 
+  //when field changes call callback, used on input
+  //fields in the view
+
+
+
 ng-controller
-ng-model
 
 $scope //Object used to move things between your view and your model in a 
   encapsulated way. Usually you should add on a "model object", an object onto 
@@ -37,7 +46,6 @@ $scope //Object used to move things between your view and your model in a
   what that's about yet...
 
 
-ng-change(callback) (when field changes call callback)
 ng-submit (a form attr, set equal to callback, default post will be stopped )
 ng-click (attr, set equal to a callback for click event)
 
