@@ -1,4 +1,4 @@
-Angular Elements
+...Angular Elements...
 Directives
 Angular Expressions
 Controllers
@@ -8,6 +8,70 @@ Views - NO! It's just HTML
 $scope
 $http
 $rescource
+
+...Angular Design....
+Client-Side Templates
+MVC
+Data Binding
+
+.........Directives..........
+ng-app //declares angulars boundaries, can go in
+  html tag for whole page app, or inside a div
+  example: <html ng-app> 
+
+ng-bind = 'data'
+  //also expressed as {{data}}
+  //where data is whatever property you want to 
+  //bind to. Use ng-bind instead of {{}} in
+  //your index.html to keep users from seeing braces  
+  //while angular is still loading
+
+ng-controller
+ng-model
+
+$scope //Object used to move things between your view and your model in a 
+  encapsulated way. Usually you should add on a "model object", an object onto 
+  $scope, and then work with that object instead of tacking a bunch of 
+  things directly on the $scope object. Apparenlty this is important for 
+  avoiding problems with "prototypal inheritance". Not really sure exactly 
+  what that's about yet...
+
+
+ng-change(callback) (when field changes call callback)
+ng-submit (a form attr, set equal to callback, default post will be stopped )
+ng-click (attr, set equal to a callback for click event)
+
+ng-repeat = "thing in things" 
+  //make elements by iterating trhough an object 
+  //$first, $middle, $last, $repeat are some usable variables 
+  //during the iteration
+
+
+ng-src (use instead of src on <img> tags )
+ng-href (used instead of href for <a> tags)
+
+........................
+
+
+
+$scope.$watch(thingToWatch, callback) (watch for var change then run callback)
+
+appModule = angular.module('<nameOfApp>', [<arrayOfArgs?>])
+  //this is how you define an application module
+  //the nameOfApp will be used in the view to 
+  //point twoard thea app module like so....
+  //<html ng-app="nameOfApp">
+
+
+
+...Startup Flow of Angular App....
+1. User Request Page of application
+2. HTTP request, index.html containing your template is loaded
+3. Angular loads waits for page to load, find ng-app
+4. Angular searches template for 'directives' and 'bindings'
+   turns everything into a the view
+5. Connect to server and pull and push additonal data as needed
+Step 4 and 5 can happen async or sync. 
 
 
 .........................
@@ -20,18 +84,6 @@ Model View Controller - All Agular apps have:
 * Views that display this data
 * Controllers that manage the relationship between model and views
 
-ng-change(callback) (when field changes call callback)
-ng-submit (a form attr, set equal to callback, default post will be stopped )
-ng-click (attr, set equal to a callback for click event)
-
-ng-repeat = "thing in things" (make elements by iterating trhough an object) 
-$first, $middle, $last, $repeat (some usable variables during the iteration)
-
-
-$scope.$watch(thingToWatch, callback) (watch for var change then run callback)
-
-ng-src (use instead of src on <img> tags )
-ng-href (used instead of href for <a> tags)
 
 
 ............................................
