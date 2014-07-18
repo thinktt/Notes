@@ -84,8 +84,16 @@ sudo apt-get dist-upgrade  # Installs updates
 
 //mongodb important dirs and useful stuff
 /var/log/mongodbd
-/var/lib/mongodb
+/var/lib/mongodb (current location of dbs)
 ps -ef | grep mongo
+
+..repair bad mongo shutdown..
+Do this... 
+sudo rm /var/log/mongodbd/mongod.lock
+Then restart....
+To be more legit try this before you restart...
+sudo mongod --dbpath /var/log/mongodbd --repair
+
 
 //shutdown the system
 sudo shutdown -h now
