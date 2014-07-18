@@ -93,6 +93,10 @@ git branch --merged// shows all branches that are included in
 git branch -m <name> <new-name>//rename branch
 git branch -d <branch> //delete branch
 	//-D used if you want to delete a branch that is not merged
+git branch - a 
+	//show local and remote
+git branch -r 
+	//show remote
 
 
 git checkout --<file> //reset a file from to working from repo
@@ -107,6 +111,7 @@ git merge <branch> //merges branch into current branch
 	//--no-ff will force it to not fastforward but commit the merge
 	//--ff-only only do the merge if you can fastforward
 git merge --abort //abort merge
+
 
 
 //..........Merge Conflict Resolution.............
