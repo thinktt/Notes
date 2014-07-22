@@ -130,6 +130,10 @@ git stash pop //puts stash in workin dir and removes stash
 git stash apply //same as above but no removal
 git stash drop <stash> //remove the stash
 git stash clear //deletes all stashes
+//do this to stash a file then pull it back in later
+git stash 
+do your stuff 
+git checkout stash@{0} -- <filename>
 
 
 //.........Using Remotes.......................
