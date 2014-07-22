@@ -148,3 +148,5 @@ git branch <branch> <origin/branch>
 git push origin --delete <remote-branch>
 	//delete a remote branch
 
+//............Setting up an Alias............
+git config --global alias.log10 'log --oneline -10'
