@@ -15,7 +15,8 @@ Can be repurposed or "syndicate", any other independent item of content.
 Things related to the content around them but not specific to it? 
 Seperate from the main content of the page. 
 
-<footers>
+<footer>
+Can't contain a header or  a footer. A footer typically contains information about its section such as who wrote it, links to related documents, copyright data, and the like.
 
 ***Content Model Types**
 Metadata content
