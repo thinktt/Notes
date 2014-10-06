@@ -102,3 +102,9 @@ sudo shutdown -h now
 export ENV_VAR="something"
 //checking them
 printenv ENV_VAR
+
+//my scripts 
+usr/local/bin
+
+//a way to set up cron jobs
+crontab -e 
