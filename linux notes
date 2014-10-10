@@ -108,3 +108,6 @@ usr/local/bin
 
 //a way to set up cron jobs
 crontab -e 
+
+//view a log file in real time
+ tail -f /path/to/logfile
