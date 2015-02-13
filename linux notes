@@ -111,3 +111,6 @@ crontab -e
 
 //view a log file in real time
  tail -f /path/to/logfile
+
+ //eviroment variables for specific user
+ .bash_profile or .bashrc
