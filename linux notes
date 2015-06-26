@@ -114,3 +114,7 @@ crontab -e
 
  //eviroment variables for specific user
  .bash_profile or .bashrc
+
+ //mount local windows share
+ sudo mount -t cifs -o user=[user],uid=gandalf,gid=devs //[ipaddress]/Shared /mnt/winShare
+

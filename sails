@@ -1,0 +1,75 @@
+api 
+assets 
+config 
+tasks
+views
+
+...api....
+sails creates default action routes for all controllers under api/controllers/
+use "index" key to set up a function at the base of controller route
+config/routes can be used to manually bind routes and overide defaults
+
+api/responses
+contains all default responses and can be edited to add responses
+any response in this dir can be execuded with res.[responseName]
+default responses
+ res.serverError(error)
+ res.badRequest(validationErrors, redirectTo)
+ res.notFound() //returns a 404 in json or a 404 page
+ res.forbidden(message)// retursn 403 status code and message
+
+
+
+
+...Sails CLI...
+sails generate controller <controller name> [action names sperated by spaces]
+-this is a quick way to generate boilerplate controller you can fill in with stuff
+-example usage:
+-sails generate controller howdy sayhowdy sayhowdydammit 
+
+
+...Sails Log...
+configure it at config/log.js, you can use sails.log.* to log things at different levels
+
+....Policy.....
+/config/policies
+where policies are mapped to controllers
+/api/plicies
+where policy files are stored
+policies can call next but controllers should not
+
+......Route Magic.....
+explicitly route URLs in config/routes
+'[optional verb] [path]' : '[target]' 
+- target is a controller or a view
+path can use * (wild cards) such as '/*'
+-this can overdie your asset routes if you are not careful, use skipAssets option
+use ':' to deliniate parts of path to capture in perams
+-for example 'user/foo/:name/bar/:age' will match 'user/foo/*/bar/*'
+ but will add values to req.param('age') and req.param('name')
+use regular expressions with capture groups to capture params
+use bluprint targe syntax to map to bluprint actions (find, update, etc)
+-'GET /findAllUsers': {model: 'user', blueprint: 'find'},
+-'GET /user/findAll': {blueprint: 'find'} (sails guesses 'user' model)
+target can also be another route 
+-'/alias' : '/some/other/route'
+-'GET /google': 'http://www.google.com'
+target can be a specific response from /api/responses/
+-'/foo': {response: 'notFound'}
+point route to a policy, always use an array and have a second target
+-'/foo': [{policy: 'myPolicy'}, {blueprint: 'find', model: 'user'}]
+you can also pass special properties to the target object, although docs
+are not to clear about this, but list the options (see the docs)
+-this is an example of target options from slug docs 
+		'get /:account/:repo': {
+			controller: 'RepoController',
+			action: 'show',
+			skipAssets: true
+		}
+
+....Services.....
+api/services/
+can be used to create global services available everywhere
+
+
+
