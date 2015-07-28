@@ -71,5 +71,17 @@ are not to clear about this, but list the options (see the docs)
 api/services/
 can be used to create global services available everywhere
 
+....set up atuoreload.....
 
+add config/autoreaload.js with the following: 
+// [your-sails-app]/config/autoreload.js
+module.exports.autoreload = {
+  active: true,
+  usePolling: false,
+  dirs: [
+    "api/models",
+    "api/controllers",
+    "api/services"
+  ]
+};
 

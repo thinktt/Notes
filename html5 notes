@@ -1,0 +1,69 @@
+<header> for intro content
+
+<nav>
+Is it a major navigation block. If a screen reader is accessing this need to understand this is major navigation stuff. 
+
+<section> 
+thematic grouping of content
+Is this content going to be "syndicated" then you should use article
+If you need something for simply styling use div
+
+<article>
+Can be repurposed or "syndicate", any other independent item of content. 
+
+<aside> 
+Things related to the content around them but not specific to it? 
+Seperate from the main content of the page. 
+
+<footer>
+Can't contain a header or  a footer. A footer typically contains information about its section such as who wrote it, links to related documents, copyright data, and the like.
+
+***Content Model Types**
+Metadata content
+Flow content
+Sectioning content
+heading content
+Phrasing content
+Embedded content
+Interactive content
+
+Metadata
+Sets uf the presentation or behavior of the rest of the content, or sets up the relationship of the document with other documents, or conveys other "out of band" information. 
+
+Embedded content
+is content that imports another resource into the document, or content from another vocabulary that is inserted itno the document.
+
+Interactive 
+specifically intnded for user interactoin. Example is link tag. 
+
+Heding content
+Defines the header of a section. h1, h2, h3...
+
+Pharasing content 
+Is the text of the codument, as well as elements that mark up the text at the intra-paragraph level. 
+Most elements in this catagory can only contain element sthat are themselves in this catagory, not any flow content (not a hard and fast rule but general principle)
+
+Flow conent
+Most things in the body tag
+
+Sectioning content
+defines the scope fo the headings and the footers  
+
+***
+HTLM5 is conerned with the structure of the markup of content, not the presentation. 
+
+Outline Algorithm
+Section and heading content is used to define the outline
+Body is established as the outline root
+Items are added to the outline as sectioning content is found
+Intial heading content is used to name sections
+Sectioning content contained within sections is nested in the outline
+
+http://gsnedders.html5.org/outliner/
+
+Sectioning Elements
+article, aside, nav and section
+headings also creat sections
+ 
+
+
