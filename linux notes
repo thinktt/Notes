@@ -127,6 +127,10 @@ auth required pam_google_authenticator.so (add at bottom)
 ChallengeResponseAuthentication yes (entry exist just change to yes)
 sudo service ssh restart
 
+//start a app on a remote desktop through ssh
+DISPLAY=:0.0 [appToStart] &
+
+
 
 
 
