@@ -1,0 +1,191 @@
+SQL Two major catagories
+Data Manipulationn Langulage (DML)
+-Add, Query, Manimpulate, Delete, from Tables and Data Sets 
+Data Definitoin Language (DDL)
+-Define tables, indexes and relationships
+
+Relational Database 
+- a database cabaple of representing relationships between different sets of data
+
+Rows and columns
+Rows logical set of data items (although columns can be quried also)
+Record, a query result that my not translate directy into a table row
+column - typically a set of object of the same kind and usage, span rows
+Database is a collection of tables
+
+DBMS - Database Managment System
+-examles are SQL, SQL Lite, mySQL, SQL Server
+
+SQL two major usage context
+-used to interact with DB using vendor supplied interface
+-embedded into another programming language allowing language to manipulate query
+	db using the language itself
+
+This course is Standard SQL 
+
+SELECT statement
+	SELECT * FROM table;
+-basis of most SQL queries that return a result
+
+INSERT statment - used to add data to a table
+	INSERT INTO table (a, b, c) VALUES (1, 2 ,3);
+	INSERT INTO TABLE (a, b c) VALUES (1, 2,3) ORDERED BY b;
+
+UPDATE - change values of existing rows in a table
+	UPDATE table SET a = 7, b = 6; 
+
+DELETE - remove rows from a table
+	DELETE FROM table WHERE a - 7;
+
+COUNT function -  find how many records match a query without displaying actual data
+	SELECT COUNT(*) FROM table; 
+-use to count number of rows in a query
+-aggrigate function, returns one value for a set of results
+-COUNT functions is one of more commenly used functions in SQL
+
+Select just rows your intereste in 
+WHERE 
+SELECT * FROM table WHERE field = 'something'
+
+Select just col your intersted in
+SELECT [col, col, ...] FROM table;
+
+AS - changes the column names when returned
+	SELECT [col] AS [whatever];
+-can also be written in less clear fashion
+	SELECT [col] [whatever];
+-Probably good practice to always include AS keyword for clarity
+-Column headers are returned by DB interface, often used in your code
+-Column headers can be used to specify intermediate results 
+-AS can be important in preventing namespace collision
+
+AND 
+-used in WHERE queries to add conditionals
+
+.................................................................
+CRUD - Create, Retrieve, Update, Delete
+
+INSERT - put a new row into a table
+	INSERT INTO table (col, col, col, ...) VALUES (stuff, stuff, stuff);
+
+UPDATE 
+	UPDATE table SET [col = 'data', col = 'data', ...] WHERE [col = 'data'];
+- you can update values and set them to NULL if you want
+
+DELETE - removes rows from a table uses the WHERE clause
+	DELETE FROM table WHERE [col = 'data'];
+-good practice to use SELECT statement first to make sure you know what 
+ yoru about to delete
+
+
+
+...............................................................
+Database - a collections of tables
+- may also have indexes, triggers, storage procecures, other metadata
+- each table has a common set of data
+- understanding how a particular database is organized can help you understand your app
+ 	or the app you need to work with
+
+
+Table - collectoin of data organized in rows and columns
+-normally a collection of related things 
+-may have relationships with others tables
+-tables in a database are generally related to each other
+-some systems allow queries to cross databases
+-typycally tables are used by one app or a set of apps and tables used by different
+	applications are usually kept in a different database
+
+SQL - a standard language for describing relational databases and queries
+- Standard SQL is SQL 2011
+- most SQL implimintations are pre standdards and have backward compatibility
+	for their particular SQL flavor, lack of compliance can exist
+- none of current implimintaitons of SQL support standard completely, all of them 
+	to some degree
+- Core SQL is supported in all SQL systems
+- things like data types, and function impliminations vary system to system
+
+SQL statmenets begin with a keyword and end with s semicolon
+-semicolon is always required
+-some impliminations don't require it for single line statements
+-most SQL drivers do not rquire semicolon for standalone statements
+-most systems always allow it, good practice to always use it
+-SQL statements are not case sensitive
+-some systems user defined symbols are case sensitive
+- good practice write your SQL consistently
+- comments are introduced by '-- ', ends at end of line
+- C style comments also /**/ recognized
+	 most dbs support above, confirm it is supported before you use it
+- statement may have one or more clauses depending on syntax of statement
+- FROM clause specifies table
+- WHERE clause specifies a condition that must be satified for each row selected
+- Functions are used to preform specific operations on data
+	SELECT COUNT(*) FROM Album WHERE Label = 'Columbia';
+- Expressions are used to derive values from data 
+	-normal and logical example below
+	SELECT Name, Population / 100000 AS PopMM 
+		FROM Country,
+		WHERE Population >= 100000
+		ODER BY Population DESC; 
+...........................................................
+CREATE TABLE test (
+	id INTEGER PRIMARY KEY,
+	a INTEGER,
+	b  TEXT,
+	c TEXT NOT NULL,
+	e TEXT DEFAULT 'Howdy!'
+);
+-NOT NULL constraint makes sure a value is there
+-PRIMARY KEY specific to SQL lite makes sequential id numbers in table
+
+
+DROP TABLE table;
+-deletes a table from the database
+- IF EXIST clause can be added t end to avoide errors
+
+INSERT INTO table SELECT id, name, description FROM item; 
+- can use results of s SELECT statement in insert
+	INSERT INTO TEST (a, b, c ) SELECT id, name descrition FROM itme;
+-can be used to store queries for instance 
+
+
+LIMIT keword used to limit query return 
+
+NULL
+-You can not test for NULL it isnot a value a = NULL doesn't work
+-instead use IS NULL condition or IS NOT NULL condition
+
+Constraints
+DEFAULT will let you set default values
+UNIQUE requires unique value
+-NULL values may be exmpted from uinque constraint
+ sometimes you can combine constraints (NOT NULL) or find particula constraints 
+ for your DB system
+
+ALTER TABLE table ADD col [constraint, constraint, ...]
+
+ID Columns hold unique values for each row in a table, typically they are automatically populated,
+	each DB system does it differently
+
+Operators
+AND < > =
+LIKE operator selects by text inside of fields
+ SELECT Name, Continent, Population FROM Country WHERE Name LIKE '%island%' ORDER BY Name; 
+ -% wild card in SQL matches 0 or more chars
+ -_ matches any single charachter
+ 
+IN ('Europe,')
+ SELECT Name, Continent, Population FROM Country WHERE Continent IN ('Europe, 'Asis') ORDER BY Name;
+
+SELECT DISTINCT allows you to query without duplicates
+	SELECT DISTINCT col FROM table;
+	SELECT DISTINCT col, col FROM table;
+	-the second will show the distinct of both columns together
+	-SELECT DISTICNT does sort automatically in it's algorithm
+
+ODER BY
+DESC clause can be added on the end
+	SELECT Name FROM Country ORDER BY Name DESC;
+ASC clause not commenly uses but opposite of DESC
+	SELECT Name, Continent FROM Country ORDER BY Continent, Name; 
+	-Orders by the Continent and also by the names in each continent group
+-mixing up these clauses can allow complex sorting of rows

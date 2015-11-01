@@ -1,0 +1,26 @@
+Goal Tree (And Or Tree)
+
+Knowledge about Knowledge is Power
+Catechism
+What kind
+How Represented
+How Used
+How Much
+What Exactly
+
+Rule Based Expert Systems
+
+Simon's Ant
+Complexity of behavior is the max of the complexity of the program and the complexity of the eviroment
+
+4. Search: Depth-First, Hill Climbing, Beam
+*Search is about choice
+
+British Museum
+Deapth First Search
+Go down brancbhes always follow left path (convention)
+Breath First Search
+
+Back Tracking
+use end node list
+Is it informed (extra heuristic data)

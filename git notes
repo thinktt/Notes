@@ -159,3 +159,8 @@ git push origin --delete <remote-branch>
 
 //............Setting up an Alias............
 git config --global alias.log10 'log --oneline -10'
+
+
+//............rebase branch to master..........
+git fetch
+git rebase origin/master
