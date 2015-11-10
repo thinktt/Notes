@@ -165,6 +165,8 @@ git config --global alias.log10 'log --oneline -10'
 git fetch
 git rebase origin/master
 
+//........interactive rebase............
+git rebase -i HEAD~3
 
 //..........create a git dameon for local P2P (insecure on open networks).....
 git daemon --base-path=. --export-all --reuseaddr --informative-errors --verbose
