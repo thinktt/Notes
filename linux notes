@@ -114,6 +114,7 @@ crontab -e
 
  //eviroment variables for specific user
  .bash_profile or .bashrc
+ also .bashrc can be used kind of like an autoexec when you start a new terminal
 
  //mount local windows share
  sudo mount -t cifs -o user=toby,uid=gandalf,gid=devs //192.168.1.149/Shared /mnt/winShare
