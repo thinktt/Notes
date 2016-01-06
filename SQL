@@ -374,7 +374,62 @@ Common MySQL Functions
 		TIME_TO_SECONS('00:30:00') -
 		SEC_TO_TIME()
 		ADDTIME('1:00:00', 00:29:45)
-		SUBTRACTTIME('1:00:00', 00:29:45)
+		SUBTIME('1:00:00', 00:29:45)
+		ADDDATE('0000-00-00', INTERVAL 31 DAY) - adds 31 days
+		SUBDATE('0000-00-00', INTERVAL 31 DAY) 
+			- Interval can be multiple months, weeks...
+		Time Zone Support
+			SHOW VARIALBES LIKE '%time_zone%'
+			-you can set the time zone variables
+			SET time_zone = 'US/Pacific'
+		DATE_FORMAT(NOW()), '%W, %D of %M, %Y');
+
+	Aggregate functions
+		-act on a set of rows rather than row by row
+		COUNT([col or *]) -will count values
+		GROUP_CONCAT()
+			SELECT GROUP_CONCAT() FROM Country WHERE Region = "Western Eruope"
+
+	SELECT 
+		CASE WHEN a THEN 'true' ELSE 'false'  As boolA,
+		CASE WHEN a THEN 'true' ELSE 'false'  As boolA
+		FROM booltest
+
+	SELECT 
+		CASE a WHEN 1 THEN 'true' ELSE 'false'  As boolA,
+		CASE b WHEN 0 THEN 'true' ELSE 'false'  As boolA
+		FROM booltest
+
+	Transactions 
+		-make sure related queries are perfomed as a group
+		START TRANSACTION;
+		COMMIT; 
+		ROLLBACK; -you can use it to test an execution
+		-transactions can increase perormance 
+
+	Trigger
+		-allows to set up conditions where updating one table updates another
+		CREATE TRIGGER table AFTER INSERT ON table
+			FOR EACH ROW
+			UPDATE TABLE1 SET ...
+		-can yse triggers to prevent things also
+
+	Sub Select aka Sub Query
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		
 
 
