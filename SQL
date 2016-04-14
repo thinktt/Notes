@@ -190,6 +190,7 @@ ASC clause not commenly uses but opposite of DESC
 	-Orders by the Continent and also by the names in each continent group
 -mixing up these clauses can allow complex sorting of rows
 
+<<<<<<< HEAD
 CASE used for conditionals: 
 	SELECT * FROM booltest; 
 	SELECT 
@@ -210,6 +211,258 @@ Inner Joins, default and most common, INNER keyword typically omitted
 LEFT JOIN rows where condition is met + all rows of table on left where condition si not met
 RIGHT OUTER JOIN not ussually suppported, generaly can be written a s left join
 FULL OUTER JOIN all rows from both tables including those where condition are met, not implimented for the most part
+=======
+
+...........MySQL..........
+InnoDB is the standard MySQL engine now, it's new and good
+
+% sign in a string is a  wile card 
+_ can be used as a blank matching 
+	'_a%' getes everything with second letter as a
+
+REGEXP can match with a regex
+	SELECT stuff FROM table WHERE row REGEX regex; 
+
+Literal Strings
+you can concaticnate strings in MySQL with
+SELECT 'hello' ',' 'world';
+Also MySQL can use double quotes but is not standard sql
+to do a single quote in a literal string use double '' (non standard) 
+Also using an escape char will work \'  (non standard)
+
+DESCRIBE table;
+ used to get table information
+
+SHOW TABLE STATUS LIKE table;
+	used to get more detailed table information
+
+DROP TABLE IF EXIST table; 
+	fairly obvious, but useful if you want to test
+	first before drop
+
+Constraints
+	used when creating table
+	CREATE TABLE TEST( 
+		a INTEGER NOT NULL DEFAULT 47,
+		B VARCHAR(255) UNIQUE NOT NULL
+		c INTEGER PRIMARY KEY AUTO_INCREMENT
+		b SERIAL #does everything above with less code
+	);
+
+
+SELECT LAST_INSERT_ID()
+	will tell you the last id of anything inserted
+
+Foreign key constraints example 
+	CREATE TABLE lend (
+	  id INT AUTO_INCREMENT PRIMARY KEY,
+	  stamp TIMESTAMP, 
+	  c_id INT,
+	  b_id INT,
+	  FOREIGN KEY (c_id) REFERENCES client(id), 
+	  FOREIGN KEY (b_id) REFERENCES book(id)
+	);
+
+Alter statmentent
+	ALTER TABLE table ADD col constraints;
+	ALTER TABLE table DROP col; 
+	ALTER TABLE table BB VARCHAR(10) AFTER a;
+
+MySQL three types of data
+	Numeric
+	String
+	Date and Times
+	Specialy types 
+		Boolians 
+		Enumerations
+		Sets
+	Integer types
+		varous sizes
+	Fixed point types
+		fixed decimal
+	Floating point types
+		real numbers
+	Fixed length char strings
+	Variable length strings
+	Binary Strings
+	BLOB (binary large object)
+	TEXT 
+		like a blob but non binary
+		stores char encoding
+		treated as text
+	Date and Time 
+		standard sql format
+		auto time stamps
+		time zone supported
+	Enum and SET
+	 ENUM for a single falue from a list
+	 SET for several fvaule from a list
+	 SET is stored as a bitmap
+
+MySQL maximum storage per row
+ 65,535 bytes
+
+Integer types
+	TINYINT
+	SMALLINT
+	MEDUMINT
+	INTEGER
+	BIGINT
+Decimal Type
+	DECIMAL(precsion, scale)
+	NUMERIC (alias for DEIMAL)
+Floating point
+	FLOAT
+	DOUBLE
+	REAL (alias for float)
+String Types
+	Char Strings
+	Binary STring
+		BINARY()
+		VARBINARY()
+	Fixed and Variable length
+	Large Object Storage
+	CHAR(length) uses all lenght
+	VARCHAR(length) uses variable size up to lenght
+
+Date and Time Types
+ DATE and TIME
+ YEAR
+ DATETIME
+ TIMESTAMP
+
+Bit Type
+Boolean type
+ BOOLEAN()
+ BOOL() is an alias
+
+Enumeration Types
+	CREATE TABLE test(
+		id SERIAL,
+		a ENUM(value1, value2, value3)
+	)
+Sets
+	can be used to store sets of information in rows
+	anything in a field must be of that set
+	CREATE TABLE test(
+		id SERIAL,
+		a SET(value1, value2, value3)
+	)
+
+SHOW VARIABLES
+
+Common MySQL Functions
+	String functions:
+		LENGTH
+		CHAR_LENGTH
+		LEFT(string, no_of_chars)
+		Mid(string, start, end)
+		RIGHT(string, left_start)
+		CONCAT
+		CONCAT_WS - with seperators
+		LOCATE('bar', 'foobarbaz') 
+			- finds where string is in other string
+		UPPER()
+		LOWER()
+	Numeric Functions
+		Operators 
+		+, *, +, 
+		/ -gets you a float
+		DIV gets you a int
+		MOD gets you remainder
+		% also means MOD
+		POWER(num, to_power_of)
+		POW alias for above
+		ABS() - absolute value
+		SIGN()
+		CONV(num, from_base, to_base) - gives 39 
+			-convert numbers to different base types
+			-can be base 2 to base 36
+		PI() gives pi
+		ROUND(num_to_round, number_of_digits)
+		TRUNCATE(num, aount_to_runcate)
+		CEILING() -always rounds up
+		FOOR() always round down
+		RAND(seed) -random number
+
+	Date and Time
+		NOW() -current time
+		CURRENT_TIMESTAMP() alias for now
+		UNIX_TIMESTAMP() 
+		DAYNAME(NOW());
+		DAYOFMONTH
+		DAYOFYEAR
+		MONTH
+		TIME_TO_SECONS('00:30:00') -
+		SEC_TO_TIME()
+		ADDTIME('1:00:00', 00:29:45)
+		SUBTIME('1:00:00', 00:29:45)
+		ADDDATE('0000-00-00', INTERVAL 31 DAY) - adds 31 days
+		SUBDATE('0000-00-00', INTERVAL 31 DAY) 
+			- Interval can be multiple months, weeks...
+		Time Zone Support
+			SHOW VARIALBES LIKE '%time_zone%'
+			-you can set the time zone variables
+			SET time_zone = 'US/Pacific'
+		DATE_FORMAT(NOW()), '%W, %D of %M, %Y');
+
+	Aggregate functions
+		-act on a set of rows rather than row by row
+		COUNT([col or *]) -will count values
+		GROUP_CONCAT()
+			SELECT GROUP_CONCAT() FROM Country WHERE Region = "Western Eruope"
+
+	SELECT 
+		CASE WHEN a THEN 'true' ELSE 'false'  As boolA,
+		CASE WHEN a THEN 'true' ELSE 'false'  As boolA
+		FROM booltest
+
+	SELECT 
+		CASE a WHEN 1 THEN 'true' ELSE 'false'  As boolA,
+		CASE b WHEN 0 THEN 'true' ELSE 'false'  As boolA
+		FROM booltest
+
+	Transactions 
+		-make sure related queries are perfomed as a group
+		START TRANSACTION;
+		COMMIT; 
+		ROLLBACK; -you can use it to test an execution
+		-transactions can increase perormance 
+
+	Trigger
+		-allows to set up conditions where updating one table updates another
+		CREATE TRIGGER table AFTER INSERT ON table
+			FOR EACH ROW
+			UPDATE TABLE1 SET ...
+		-can yse triggers to prevent things also
+
+	Sub Select aka Sub Query
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+
+
+
+
+
+
+
+
+
+>>>>>>> 344d341a391d868b81fcddf9ef09a4af7917a6af
 
 
 

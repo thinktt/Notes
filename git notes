@@ -172,3 +172,10 @@ git rebase -i HEAD~3
 git daemon --base-path=. --export-all --reuseaddr --informative-errors --verbose
 then pull from other computer like so....
 git clone git://127.0.0.1/repo-name
+
+
+//.....ssh agent use http for github
+~/.ssh/config -> ADD ->
+Host github.com
+  Hostname ssh.github.com
+  Port 443

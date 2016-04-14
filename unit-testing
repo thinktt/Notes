@@ -1,0 +1,18 @@
+Test First
+Unit test small test
+Integration Test (large parts)
+Small programs to test functionality of our larger program. 
+
+Test First
+  Test Driven 
+  Behavior Driven
+
+  Test Steps
+  Get user count
+  Save new user
+  Get new user count
+
+  Test first means we're accessing things that don't exist yet.
+  
+
+
