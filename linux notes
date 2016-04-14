@@ -39,9 +39,9 @@ upstart log directory:
 
 exec start-stop-daemon --start --chuid gandalf --chdir /home/gandalf/server/ --exec /home/gandalf/server/startServer.sh
 
- start-stop-daemon --start --chuid gandalf --exec /home/gandalf/server/startServer.sh
+start-stop-daemon --start --chuid gandalf --exec /home/gandalf/server/startServer.sh
 
- $ echo $PATH
+cd $ echo $PATH
 
 /bin (common ternminal commands)
 /boot (start up stuff, kernel and boot loader config files)

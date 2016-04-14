@@ -189,3 +189,28 @@ ASC clause not commenly uses but opposite of DESC
 	SELECT Name, Continent FROM Country ORDER BY Continent, Name; 
 	-Orders by the Continent and also by the names in each continent group
 -mixing up these clauses can allow complex sorting of rows
+
+CASE used for conditionals: 
+	SELECT * FROM booltest; 
+	SELECT 
+	 CASE WHEN a THEN 'true' ELSE 'false' END as boolA,
+	 CASE WHEN b THEN 'true' ELSE 'false' END as boolB
+	 FROM booltest
+	;
+	SELECT 
+	 CASE a WHEN 1 THEN 'true' ELSE 'false' END as boolA,
+	 CASE b WHEN 1  THEN 'true' ELSE 'false' END as boolB
+	 FROM booltest
+	;
+-use case when you need a conditional in SQL
+
+...............Relationships........................
+Joins
+Inner Joins, default and most common, INNER keyword typically omitted
+LEFT JOIN rows where condition is met + all rows of table on left where condition si not met
+RIGHT OUTER JOIN not ussually suppported, generaly can be written a s left join
+FULL OUTER JOIN all rows from both tables including those where condition are met, not implimented for the most part
+
+
+
+
