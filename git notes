@@ -179,3 +179,10 @@ git clone git://127.0.0.1/repo-name
 Host github.com
   Hostname ssh.github.com
   Port 443
+
+//....to set caching for HTTP credentials
+git config credential.helper 'cache --timeout=300'
+
+//......tagging 
+git tag -a v1.4 -m "my version 1.4"
+git push origin [tagname].

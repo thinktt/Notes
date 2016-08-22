@@ -1,0 +1,41 @@
+Install Node.js on Ubuntu for Production
+We will install the latest LTS release of Node.js, on the app server.
+
+On the app server, let's update the apt-get package lists with this command:
+
+sudo apt-get update
+Then use apt-get to install the git package, which npm depends on:
+
+sudo apt-get install git
+Go to the Node.js Downloads page and find the Linux Binaries (.tar.xz) download link. Right-click it, and copy its link address to your clipboard. At the time of this writing, the latest LTS release is 4.2.3. If you prefer to install the latest stable release of Node.js, go to the appropriate page and copy that link.
+
+Change to your home directory and download the Node.js source with wget. Paste the download link in place of the highlighted part:
+
+cd ~
+wget https://nodejs.org/dist/v4.2.3/node-v4.2.3-linux-x64.tar.gz
+Now extract the tar archive you just downloaded into the node directory with these commands:
+
+mkdir node
+tar xvf node-v*.tar.?z --strip-components=1 -C ./node
+If you want to delete the Node.js archive that you downloaded, since we no longer need it, change to your home directory and use this rm command:
+
+cd ~
+rm -rf node-v*
+Next, we'll configure the global prefix of npm, where npm will create symbolic links to installed Node packages, to somewhere that it's in your default path. We'll set it to /usr/local with this command:
+
+mkdir node/etc
+echo 'prefix=/usr/local' > node/etc/npmrc
+Now we're ready to move the node and npm binaries to our installation location. We'll move it into /opt/node with this command:
+
+sudo mv node /opt/
+At this point, you may want to make root the owner of the files:
+
+sudo chown -R root: /opt/node
+Lastly, let's create symbolic links of the node and npm binaries in your default path. We'll put the links in /usr/local/bin with these commands:
+
+sudo ln -s /opt/node/bin/node /usr/local/bin/node
+sudo ln -s /opt/node/bin/npm /usr/local/bin/npm
+Verify that Node is installed by checking its version with this command:
+
+node -v
+The Node.js runtime is now installed, and ready to run an application! Let's write a Node.js application.
