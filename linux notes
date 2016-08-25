@@ -135,3 +135,13 @@ DISPLAY=:0.0 [appToStart] &
 ssh-keygen -lf ssh_host_rsa_key.pub
 //and if it doesn't display how you need it try this
 awk '{print $2}' ssh_host_rsa_key.pub | base64 -d | sha256sum -b | awk '{print $1}' | xxd -r -p | base64
+
+//run something on reboot for a user
+//using crontab, can be used for forever script 
+crontab -u user -e 
+add this to the file:
+@reboot /usr/local/bin/script
+
+//change colors in console
+vim ~/.bashrc
+LS_COLORS=$LS_COLORS:'di=0;35:' ; export LS_COLORS
