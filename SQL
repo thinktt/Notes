@@ -439,7 +439,18 @@ Common MySQL Functions
 	Sub Select aka Sub Query
 
 
-
+//......................Things I use...............................
+SELECT
+	Department.*,
+	d.firstName AS "directorFirstName", 
+    d.lastName AS "directorLastName",
+	v.firstName AS "vpFirstName", 
+    v.lastName AS "vpLastName"
+ FROM Department
+	LEFT OUTER JOIN Resource AS d
+		ON Department.directorId = d.id
+	LEFT OUTER JOIN Resource AS v
+		ON Department.vpId = v.id;
 
 
 

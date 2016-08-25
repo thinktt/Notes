@@ -131,7 +131,7 @@ sudo service ssh restart
 //start a app on a remote desktop through ssh
 DISPLAY=:0.0 [appToStart] &
 
-
-
-
-
+//get server key fingerprint 
+ssh-keygen -lf ssh_host_rsa_key.pub
+//and if it doesn't display how you need it try this
+awk '{print $2}' ssh_host_rsa_key.pub | base64 -d | sha256sum -b | awk '{print $1}' | xxd -r -p | base64

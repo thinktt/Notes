@@ -1,0 +1,67 @@
+
+https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-14-04-lts
+
+apt-get nginx
+
+config files:
+/etc/nginx
+
+...starting, stopping, restarting
+sudo service nginx stop
+sudo service nginx start
+sudo service nginx restart
+
+
+/etc/nginx/sites-available/
+/etc/nginx/sites-enabled/
+
+Bring Site Up:
+sudo ln -s /etc/nginx/sites-available/scaleyourcode.conf /etc/nginx/sites-enabled/
+Bring Site Down:
+rm /etc/nginx/sites-enabled/scaleyourcode.conf
+
+
+//..........Common Document Root Folders...........
+/usr/share/nginx/
+/var/www
+
+
+//.........Redirect Example................
+server {
+    server_name  www.alaskasquirrel.com;
+    rewrite ^(.*) http://alaskasquirrel.com$1 permanent;
+}
+
+server {
+    server_name  alaskasquirrel.com;
+    listen       80;
+    location / {
+        root /var/www/alaskasquirrel.com/html;
+    }
+    access_log  /var/log/nginx/aksquirrel_access.log  main;
+    error_log   /var/log/nginx/aksquirrel_error.log  error;
+}
+
+
+........Second Server Block example..................
+https://www.digitalocean.com/community/tutorials/how-to-set-up-nginx-server-blocks-virtual-hosts-on-ubuntu-14-04-lts
+//notice no ipv6 setting
+server {
+    listen 80;
+    listen [::]:80;
+
+    root /var/www/test.com/html;
+    index index.html index.htm;
+
+    server_name test.com www.test.com;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
+
+
+.................................
+Gitlab Runner to setup with nginx
+..................................
+curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-ci-multi-runner/script.deb.sh | sudo bash
