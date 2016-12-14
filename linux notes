@@ -145,3 +145,9 @@ add this to the file:
 //change colors in console
 vim ~/.bashrc
 LS_COLORS=$LS_COLORS:'di=0;35:' ; export LS_COLORS
+
+//....see size of current directory
+du -sh 
+
+..........mount a remote folder with sshfs...................
+sudo sshfs -o allow_other,IdentityFile=[path_to_ssh_key] user@xxx.xxx.xxx.xxx:[path_to_remote_folder] [path_to_local_folder]

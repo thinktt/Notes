@@ -1,0 +1,21 @@
+use package [name] create things across files
+capatalize with 
+
+.....var shorthand:
+a := "Howdy"
+
+......scopes:
+universe
+package
+file
+block
+
+http.ListenAndServe
+http.Handle - a lot of custom logic to handle the request
+http.HandleFunc - method instead of an object
+
+
+
+
+
+
