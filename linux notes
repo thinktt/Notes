@@ -151,3 +151,27 @@ du -sh
 
 ..........mount a remote folder with sshfs...................
 sudo sshfs -o allow_other,IdentityFile=[path_to_ssh_key] user@xxx.xxx.xxx.xxx:[path_to_remote_folder] [path_to_local_folder]
+
+
+.......how to get the evn of a process....
+ps -ef | grep [thing-you-want]
+cd /proc/[process-id]
+sudo cat eviron
+
+
+......find process bound to port.....
+lsof -i :port 
+
+//.....vim......
+//when you forget to sudo 
+:w !sudo tee % 
+//get to bottome of page
+G$
+
+//.....replace something across a repo or a dir in a repo
+git grep -lz .js | xargs -0 sed -i '' -e 's/\.js/\.jsx/g'
+//......replace extensions recursively in a dir
+find . -name '*.js' -exec sh -c 'mv "$0" "${0%.js}.jsx"' {} \;
+
+git grep -lz .jsxson | xargs -0 sed -i '' -e 's/\.jsxson/\.json/g'
+find . -name '*.csm' -exec sh -c 'mv "$0" "${0%.csm}.css"' {} \;

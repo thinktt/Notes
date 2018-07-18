@@ -69,10 +69,6 @@ git push -f //pushes to the remote current state of repo
 	//after a hard reset
 
 
-
-
-
-
 project/.gitignore //stuff in working dir for git to ignore
 	//can use just file names but aslo some basic regEx 
 	//can also negate expressions using '!'
@@ -157,6 +153,9 @@ git branch <branch> <origin/branch>
 git push origin --delete <remote-branch>
 	//delete a remote branch
 
+//delete all local branches merged into current branch 
+
+
 //............Setting up an Alias............
 git config --global alias.logg 'log --oneline -10'
 
@@ -186,3 +185,10 @@ git config credential.helper 'cache --timeout=300'
 //......tagging 
 git tag -a v1.4 -m "my version 1.4"
 git push origin [tagname].
+
+//......local clean up, delete local merged branches, sync branches on origin
+git branch --merged | egrep -v "(^\*|master|dev)" | xargs git branch -d
+git remote prune origin
+
+//.....pull a file from another commit
+git checkout c5f567 -- file1/to/restore file2/to/restore

@@ -1,0 +1,20 @@
+openssl rand 32 -base64 > file
+xxd -p test.bin
+
+//bin file to hex file
+xxd -p file | tr -d '\n'
+
+//bin file to b64 file and back
+base64 key256.bin > key256.b64
+base64 -D -i key256.b64 -o key256.bin
+
+//bin to base32
+npm install -g base32
+base32 key256.bin -o key256.b32
+
+
+//encrypt decrypt with openssl 
+openssl aes-256-cbc -a -salt -k key.txt -in btc.txt -out btc.enc
+openssl aes-256-cbc -a -d -k key.txt -in btc.enc -out btc.ct
+
+

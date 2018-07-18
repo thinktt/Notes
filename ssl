@@ -14,4 +14,33 @@ A challenge password []:
 ...
 Generate SSL certificate
 The self-signed SSL certificate is generated from the server.key private key and server.csr files.
-$ openssl x509 -req -sha256 -days 365 -in server.csr -signkey server.key -out server.crt
+
+
+//.......encrypt a cert key......
+//not sure this works, encrypted to decrypted came out different than original
+openssl rsa -des -in rehub.key -out rehub-enc.key
+openssl rsa -in rehub-enc.key -out rehub-copy.key
+
+//...........gpg...................
+
+// genrate random password
+gpg --gen-random -a 1 30
+gpg --gen-random -a 1 60 | tr -dc A-Za-z0-9 | head -c40; echo
+
+// encrypt and decrypt to ascii
+gpg -c -a input.txt
+gpg -o output.txt input.txt
+
+//with a file as the key
+gpg -c -a --batch --passphrase-file key.txt data.txt
+gpg -o data2.txt --batch --passphrase-file key.txt  data.txt.asc
+
+//.......diceword fun................
+// how many unique words in a book
+tr -cs A-Za-z '\n' < alicehuck.txt  | tr A-Z a-z | sort | uniq | wc -l
+tr -cs A-Za-z '\n' < species.txt  | tr A-Z a-z | sort | uniq | gshuf --random-source=/dev/random -n8
+
+
+//.....wipe a file securly......
+shred -vzn 3 file.txt
+

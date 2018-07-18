@@ -1,0 +1,48 @@
+SonosZB LAN 192.168.1.103 00:0E:58:19:7A:40 13:32:05  Delete
+SonosZP LAN 192.168.1.117 B8:E9:37:5C:0D:92 20:46:34  Delete
+AFTM-10AE603EFCCC Wireless  192.168.1.121 10:AE:60:3E:FC:CC 13:34:25  Delete
+W7T29FF512  LAN 192.168.1.122 F8:16:54:49:E3:C8 22:56:18  Delete
+TheAce  Wireless  192.168.1.143 68:94:23:3A:53:F7 21:11:27  Delete
+android-d5e66ff4ec5dd258  Wireless  192.168.1.144 FC:DB:B3:CF:AE:CA 18:54:30
+
+WDMyCloud LAN 192.168.1.104 00:90:A9:41:82:31 16:27:01  Delete
+retropie  Wireless  192.168.1.105 B8:27:EB:FF:8B:87 16:41:17  Delete
+
+sudo sshfs -o allow_other,der_permissions root@192.168.1.104:/DataVolume/shares/myBackup/rpi /mnt/backup
+
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDhOeHDkJrQOgqokY0GRrbbBxNRQ9SWHY6NXbLgIYWKxZzR3y2xw7kcrmNE6yvT9m1gwpLTBmDDA+9zN7n+O45hFhOP9uPQqRSiZlxX6WIAR/Mi2hBXVsARyyDtKXrndwKYreS0+1bDY1/VafycIJUacBbBqPBkPgd+23c5IdJ1WHmqwYKRw8bI2L7pG29D3xm4KyLv/RiGz0wc2ZKvn9ipa9z3/ZkxsN/WuTX+BLE1K/R+fADeTt9WiYLnn5O8OX8nanMyObuSByG2Ny9hm+Qw/IDqJ7YRSyNc3LKSldCc7aR7dH6Hb2+8iNAe9lqZYDvm4937DRlZ90UYZ8PfFbIT pi@retropie
+
+sudo rsync -av --delete-during --exclude-from=/home/pi/rsync-exclude /  /mnt/usb/rpi/
+
+1343 root      20   0   60024  27504   2284 S   0.7  3.7   0:13.20 rsync
+
+disown -h 1
+
+/opt/retropie/configs
+/etc/emulationstation/es_systems.cfg
+/opt/retropie/emulators/
+
+/etc/init.d/xboxdrv
+/etc/default/xboxdrv
+
+/home/pi/RetroPie/roms/
+/home/pi/retroPIe/BIOS
+
+sudo rsync -aHv --delete-during --exclude-from=/home/pi/rsync-exclude.txt --link-dest=/home/pi/backup/backup/ / /home/pi/backup/backup2/
+
+sudo rsync -aHvz --delete-during --exclude-from=/home/pi/rsync-exclude.txt / toby@192.168.1.142:/shares/piBackup/backup/
+
+rsync -aHvz --delete-during --exclude-from=/root/rsync-exclude.txt --rsync-path="rsync --fake-super" / toby@192.168.1.142:/shares/piBackup/lilserv/
+
+rsync -avz --rsync-path="rsync --fake-super" /root/testdir/ toby@192.168.1.142:/shares/piBackup/testbackup/
+rsync -avz --rsync-path="rsync --fake-super" toby@192.168.1.142:/shares/piBackup/testbackup/ /root/copyback/ 
+
+
+rsync -avP --rsync-path='/usr/bin/rsync --fake-super' /src/dir backup-user@domain.com:/dst/dir
+
+//Flasg used above
+-a, --archive               archive mode; equals -rlptgoD (no -H,-A,-X)
+-H, --hard-links            preserve hard links
+-v, --verbose               increase verbosity
+-z, --compress              compress file data during the transfer
+--rsync-path                specify rsync path to run on remote machine

@@ -1,0 +1,142 @@
+Core Principles
+  Confidentiality
+  Integrity 
+  Availability
+
+General Secruity Principles
+  Authentication
+  Authorization
+  Auditing
+  Sessions
+  Exceptions
+  Configuration
+
+
+Design Security Concepts
+  Least Priviledge - Only give what is needed for the task
+  Spearation of Duties - No one should be able to do everything
+  Defense in Depth - No single point of compromise
+  Fail Secure - On failure, Confidentiality, Availability, and Integrity remains
+  Economy of Mechanism - Complexity in design increases chance of security failure
+  Complete Mediation - Every access request should be checked for authority to do access
+  Open Design - No security by obscurity, security open for review
+  Least Common Mechanism - shared mechanims between users or processes must be minimized
+  Phycological Acceptability - If it doesn't make sense to the user they will try to find a way around it
+  Levraging Existing Components - Use existing functionality to limit attack surface
+  Weakest Link - security is only as good as the the weakest link in software
+  Single Point of Failure - do not have a single source of weakness that in complete compromise
+
+Privacy
+  Don't collect sensitive info unless reqired
+  Only keep what you must store, don't keep it longer than you have to
+  Reference local privacy laws
+Data Anonymization - Make it not personalized
+Disposal Stage - make sure you destroy it when you don't need it anymore
+Data Dispostion
+  Regulation - How organization handles PII, PHI, PFI, or Disposal of data
+  Disposal - Destroy the, only valid if info is non-sensitve, make data useless
+  Purging - rendering media unrecoverable 
+  Destroying - make data damaged to point of nearly impossible to revoer
+    Disintigration, Pulverazation, Melting 
+
+Governance, Risk and Compliance
+  Regulation
+    Sarbanes-Oxley Act(SOX)
+      Design of internal controls for Financial and IT systems
+      Put in place after Enron
+    Basel II 
+      Internation Standard for Bankging Regulation out Europe
+      Proceeded by Basel III
+    Gramm-Leach-Bliley Act(GLBA)
+      Provisions to protect personal financial inormation by fananical instituions
+      About how you must protect personal financial information
+      International Regulation 
+    Health Insurance Protability and Accountability Act HIPPA
+      Privacy of health data, standard of trafsfer of this data
+      Like GLBA for Health Data
+      US only Regulation 
+    Data Protection Act 
+      Deals with protection of personally indentifable data
+      Requires consent for collection of pesonal identifalbe data
+      Region specific 
+    Computer Misuse Act
+      Early act defines kacing, unaothorized access and modification as an offense
+  Standards
+    Internal Standards (Best Practices or Guildines)
+     Coding Standards, can include libraries
+    External Standards
+      Insdustry standards and goverment standards 
+       PCI (Payment Card Industry Data Security Standard)
+        Certain elements of credit card can not be stored
+    NIST - US standards 
+    ISO
+      Common Criteria, way to evaluate security 
+  
+Risk Managment  
+  Identify the risk profile of an application
+  Software Development Life Cycle
+    Plan, Dev, Prod, consider risk at each stage
+  Vulnerabliity, Asset, Threat
+  Attack, Likelyhood and Impact
+  Buisness vs Technical Risk 
+  Ways to manage Risk
+    Mitigate - impliment a control to manage the risk 
+    Tranfer - tranfer the risk to a 3rd party (use their credit card payment service)
+    Avoid - remove the risk, don't use the risky thing, take down the app ect 
+    Accept - to accept risk buisness owner MUST sign off on it and understand it
+
+Methodologies
+  Spiral every phase has a risk assesment at each phase
+    not prevalent
+  Iterative - break it up into small prototypes
+    Every part is done as if it's own project
+  Waterfall - predefined sequential phases
+    tratitional, requirmentts design, development, testing, deployment
+  Agile - most poplular
+    Test driven development 
+    based on iteration 
+    Full loop every interation
+  Security Methodologies
+    Socratic - question answer 
+    STRIDE
+      Spoofing, Tampering, Repudiation, Information Discolsure, Denial of service, Elevation of Privilage
+    DREAD 
+      Discoverability, Reproducibility, Exploitability, Affected Users, Damage Potential
+    Flaw Hypothesi Method - Uses Pen Testing in phases
+      1 Hypthesize flaws in the system for documentation
+      2 Confirm flaws through pen-testing
+      3 Generalize confirmed flaws to uncover security issues
+      4 Add counter measures to new versions of sftware
+      Only known threats can be identified
+    Six Sigma - focusses on removing defects
+      defects are deviation from the requirements
+    Capability Maturity Model Intigration 
+      A rating scale that can be used to measer maturity of software 
+      1 Processa are adhoc, reative and unpredicatble
+      2 Repeatable project managment schedue and cost
+      3 Established processses, proactive and improve continuously
+      4 Processes are measured for improvement uing metrics
+      5 Continous process improvement and optimizaiton 
+    OSSTMM Open Security Testing Methodlogoy Manual
+      A methodology for preforming security test
+      Focusses on data and mesurements
+      5 test channels
+        Security Awareness
+        Social Engineering
+        Networks
+        Wireless and mobile devices
+        Physical access
+        Security processes
+        Building security
+    OCTAVE  Operationally Critical Threat, Asset, and Vulnerbilty Evaluation
+      Risk based security assesment methology
+      3 Stages
+        1 Build asset based threat profile
+        2 Identify vulnerabilities
+        3 Develop security strategy and plans
+
+
+
+
+
+  

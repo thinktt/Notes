@@ -1,0 +1,388 @@
+What is a directive? An instruction, tell vue to do something. 
+
+vuejs escapes html by default.
+brakets {{}} can contain any simple js evaluations
+
+you cannot use brackets in html atributes
+
+Any methods bound in the template will execute everytime the something changes 
+in the vue data. 
+
+Shorthand:
+  @ can replace v-on
+  : can replace v-bind
+
+
+.........directives............
+directives generally take arguments using colon v-directive:argument
+
+v-bind:[atribute]
+  bind the attribute of this element to the vue data model item selected
+v-bind:class 
+  for binding to class vue has special abilities, you use an object to bind 
+  classes to booleans in the data model
+  :class="{red: redIsOn, blue: !isRed}"
+  you can also just pass an object from the model or compute an ojbect
+  and pass it back 
+  conditionally select classes with an object, pass single classes
+  with an array, or mix and match 
+  :class="['green', {red: redIsOn}]"
+v-bind:style 
+  special binding for styles can be bassed array or objects
+  ojbects are style objects for the element
+    :style="{color: blue, backgroundColor: bgColor"}
+      (bgColor is from the data model)
+  singe names can be data model objects
+    :style="myDivStyles"
+  arrays can be a list of model objects to combine or 
+    inline objects or both
+    :style="[myDivSytles, {color: blue}]"
+    (blue hear is a dynamic falue but it could be an inline string)
+
+
+v-once renders the template variable only once, no binding
+v-text pass text to be rendered in the element
+v-html pass an html string t render in the element, be sure to sanztize!
+v-on:[dom-event]="[function]" sone v-on dom events get passed event
+  params automatically, also can pass things in for example:
+  v-on:click="say('Howdy')" or with protected names v-on:click="say('Howdy', $event)"
+  event get's passed by default but if you add paramaters must pass it with a $ in front
+v-model two way binding for things like input field
+
+There are two versions of vue.js one has a compiler that runs in the
+browser and recompiles it in the browser, has to respect DOM 
+limitations. There is also vue.js without a compiler. As a dependency
+vue.js without comipler is about 30% lighter. 
+
+Vue.js watches your instance model changes and uses that to update the
+virtual DOM, then the virual DOM is diffed against it's original state
+(the current real DOM state) and differences are pushed to the real 
+DOM
+
+
+..............VueJS instance Lyfecycle...........
+All hook functions can be declared in vue instance object declaration
+
+new Vue() 
+  beforeCreate()
+  Intializeze Data & Events
+  Instance Created
+  created()
+  Compiles template or el's template from html
+  beforeMount()
+  replace el with compiled template
+  mount DOM
+
+Data Changes
+  beforeUpdate()
+  re-render DOM
+  updated()
+
+About to Destroy
+  beforeDestroy()
+  Destroyed
+  destroyed()
+
+
+
+..........Event Modifiers........
+add them to chosen events to change the behaviour of the event
+they are built in vue functions for events
+.stop (don't propogate the event)
+.preventdefault (don't do the default stuff)
+
+v-on:[event].[modifier] example  v-on:click.prevent
+v-on:keyup.enter="doSomeStuff" (when enter is pressed)
+
+
+......Vue Instance Atributes.....
+el: the dom element to attach to
+data: the data model bound to your app
+methods: methods that can be bound to the app, this within these
+  methods references the vue instances data model 
+computed: methods that can be treated like atributes
+  computed methods only evaluate if there is a change in the
+  data reference in that method, while regular bound methods get
+  called every time there is any update in the data model
+  Always need to be run syncrounously
+watch: execute code upon data chage, usually it is best practice to
+  use computed methods instead as they are better optimized, however 
+  use watch for Async code, computed can not be used for async
+template: 
+  a string containing your vue template instead used in place of 
+  creating your template directly in the html
+  you can then mount an html element with vm.$mount('#yourId') and 
+  template will be rendered
+render: 
+  a compiled vuejs template is passed here and will be rendered.
+  similar to the template property but takes a compiled template
+  rather than a template string
+components: 
+  this is an attribute where you can register component objects
+  they are exactly the same objects you would pass to the Vue.components()
+  constructor
+props 
+  can only be used in component objects
+    props: ['name', 'age']
+    <my-comp name='Toby', age=37></my-comp>
+  and bound version to current variables
+    <my-comp :name='Toby', :age=37></my-comp>
+  props can only be camel cased in non DOM templates
+  props can be accessed in a component like a normal data property
+  inside of methods with the this keyword
+  props can also do validation if you choose
+
+
+..........Conditonals and List......
+v-if and v-else-if and v-else
+  completly removes and adds elements to the DOM
+  set attribute to a contidioal to hide the element
+  v-if="thing1 === thing2" 
+<template> 
+  can be used as a wrapper that for elements used with 
+  conditionals but the template tags are not actually 
+  rendered just the content
+v-show 
+  same as v-if but hides element instead of removing it
+  does not work with template element
+  does not work with v-else
+  v-show="boolVar" v-show="thing1 > thing2"
+v-for
+  basic syntax goes
+    v-for="name in list
+  You can also get indexes like so
+    v-for="(name, i) in list"
+  can be used with the template element
+  can also be used to loop through objects
+    v-for="value in object"
+    v-for="(value, key) in object"
+    v-for="(value, key, index) in object"
+  can loop through integers 
+    v-for="number in 10"
+  you can push items to your bound array and v-for will update the dom 
+  using a lot of magic in the background. If you run into bugs with 
+  the updates then consider adding a key to your for loop
+    v-for="item in list" :key="item"
+    key should be a unique value in your list
+
+
+..........Vue JS Instance Details.......
+It is possible to instantiate mutliple  fo the same instances, each 
+  one will hold it's own methods and data however
+By assigning your vue instance to a var you can access it globally
+  var vm = new Vue({data:{item1: 10}})
+  console.log(vm.item1)  // 10
+You must use the constructor to create proper bindings and proxyies from
+  data to the vue instance, you should not set values directly on your 
+  instance
+Vue usese normal JS to do things
+You should let Vue deal with any DOM elements it's bound to 
+
+$el 
+  refers to your actual DOM element that instance interacts with
+$data
+  holds data values, they are already mapped to top level however
+$ref
+  you can register refs by using the "ref" property in any element
+  and use them to reference teh ACTUAL DOM element
+    <div ref="myDiv"></div>
+    vm.$ref.myDiv.innerText
+  remember refrences are native DOM and changing them can break
+  reactiveness in vue, you are side-stepping your vue instance
+$mount 
+  allows you to take an instance and mount an element in the dom
+  vm.$mount('#el')
+$el 
+  current rendered vue template as a regular html element 
+    document.getElementById('app').appendChild(vm.$el)
+$destroy
+  destroys the instance it's attached to when run, does not delete the
+  instance object, you can use the object to remount after destroying
+  instance
+
+...............vue-cli.................
+
+
+..............Components...............
+vue components take objects same as the new vue onstructor but data 
+must be a function that returns data rather than a data object. 
+This is necessar since components instances will contsruct there own
+version of the data object using the constructor function passed to data
+in the domponent defintion unlike a instace definition that will just
+take the actual data object for that instance. Each vue component is
+it's own object
+
+Component templates must have one root element, not including the template
+element
+
+In single file components you can name your components using camelCase unlike
+DOM rendered templates where you need to resepct DOM limitations and use
+hiphens. Vue will also create dash version of component form camel case
+if you want to use different names reflecting the two styles of js vs
+html
+
+Vue.components()
+  used to register components globally
+  Vue.component('my-cmp' {component-object}});
+components attribute
+  used to register components locally
+
+component object 
+  is just like a view instance object but returns data as a function
+    data: function() {
+      return {
+       greeting: 'Howdy'
+      }
+    }
+
+style tags
+  when adding them they will get applied globally unless you use scoped
+    <style scoped></style> 
+    vue will emulate DOM shadwoing, or each element having it's own DOM
+    it does this by creating id atributes and applying the styles
+    accordingly
+
+passing event up a component chain
+  <parent-component @myEvent="doSomething($event)"></parent-component>
+    where $event is the data passed up
+  from within the component
+     this.$emit('myEvent', this.dataToPass)
+
+besides creating component custom events you can also pass data back to the
+parent my passing a callback prop from the parent
+
+you can also create a event bus but it all get's complicated so...
+vuex can help you do state managment
+
+slot tag
+  used to mark where you want inner content of component passed in from the
+  parent component to go
+  component will used scoped css insided the child component
+  you can give parent element a slot attribuete and then specify
+  where they go in the child
+    parent
+      <h1 slot="foo"></h1>
+    child
+      <slot name="fooo"></slot>
+  vue will also do a default slot if you render two slots but leave one 
+  without a name
+  Placing content between the slot tag will create default content
+  if nothing is sent to the slot
+    <slot><h1>Some Default Content</h1></slot>
+
+dynamic components with component tag
+    <componet is="app-name"></componet>
+    <componet is="app-email"></componet>
+  can be bound to create dynamic components
+    <componet :is="app-name"></componet>
+    <componet :is="app-email"></componet>
+  keep alive tag
+    wrap your dynamic component in keep alive tag to preserve the state when
+    the component is switched
+      <keep-alive></keep-alive>
+  Lifecyle hooks for dynamic components
+    activated() 
+      called when the component is activated 
+    deactivated() 
+      called when the component is deactivated
+
+................Forms.................
+v-model.lazy 
+  binds to data but only updates when you actually leave the form field
+v-model.trim
+  trim excess white space
+v-model.number 
+  convert input to a number
+
+texarea
+  when binding with v-model placing default text between the tags will not work
+  you must add your default in the v-model data
+
+checkboxes
+  binding the same model to multiple check boxes, vue will turn them into an
+  array of values for you
+
+radio buttons
+  bind your radio button group to the same v-model and vue will take care of the
+  rest
+
+select input
+ use v-for to iterate on options
+ use v-model on the parent select element not the options element
+
+creating your own input components
+  key thing to know is use the input event to emit data as this is what 
+  v-model will be looking for 
+
+submit button
+  add prevent modifier 
+    @clik.prevent="submitted"
+
+
+............Building Directives..............
+Hooks
+  bind(el, binding, vnode)
+    el element bound to
+    binding how it is setup
+    vnode node in virutal dom
+  inserted(el, binding, vnode)
+    when it is inserted into the DOM
+  updated(el, binding, vnode, oldVnode)
+  componentUpdated(el, binding, vnode, oldVnode)
+  unbind(el, binding, vnode)
+
+values
+  directive='value'
+arguments
+  directive:argument
+modifiers
+  directive.modifier
+    in directive hook 
+      binding.modifier['modifierName']
+
+
+...........Animations.........
+transition  
+  by wrapping div in transition and placing an inner if or show you can animate
+  using CSS transition and animation classes
+      <transition name="fade">
+        <h1 v-if="show">{{greeting}}</h1>
+      </transition>
+      <style>
+        .fade-enter {opacity: 0;}
+        .fade-enter-active {transition: opacity 1s;}
+        .fade-leave {}
+        .fade-leave-active {transition: opacity 1s;opacity: 0;}
+      </style>
+  you can also add classes via atributes on the transtions component
+    <transtion 
+      emter="amimation-class"
+      enter-active-class="animation-class"
+      leave-class="animation-class"
+      leave-active="animation-class">
+  classes
+    enter
+      initial enter state
+    enter-active 
+      enter animation
+    leave
+      intiial leave state
+    leave-active 
+      leave animation 
+  event hooks
+    used if you want to do js animation instead of CSS animations, hooks in js
+    are written camelCase of course
+      before-enter()
+      enter()
+      after-enter()
+      enter-cancelled()
+      before-leave()
+      after-leave()
+      leave()
+      leave-cancelled()
+      done()
+        used to let Vue know of end of aniamtion in the hooks
+  :css="false"
+    skip looking for css transtions classes if you are just using js
+
+.................VueJS router.................

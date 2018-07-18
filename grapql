@@ -1,0 +1,24 @@
+//Story of GraphQL Request
+Read input from interface
+Parse into AST (Abstract Syntax Tree)
+Resolver function for every node in the tree nodes is invoked
+  returns scaler value or 
+  object who's types have resolver functions
+Child Node Reolver Functions invoked
+Data servers will ask partial questions about the data
+Data returned is merged into single object
+Server sends response
+
+
+graphQL queries have two types of fields
+Scaler fields - primative types
+Complex Fields
+Both fields are modeled after functions, and map to resolver functions
+GraphQLID is a primative type used often used to refetch and 
+  object data, appears in responses as a string
+Fields that represent objects usually have a custon type
+
+
+
+
+

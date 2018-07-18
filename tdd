@@ -1,0 +1,194 @@
+Test
+  Satifies the requirments
+  Responds correctly to all input
+  Acceptable prerformance and reliability
+
+TDD 
+  Red - Green - Refactor
+  Red - write a test that fails
+  Green - get test to pass minimally
+  Refactor - clean up code and make it work better still passing
+
+Extreme Programming Explained
+TDD by Example
+Simple Smalltalk Testing - SUnit
+  Unit testing
+
+Why practice TDD
+  Business
+    Verfies Requirements
+    Regressions - new stuff breaks previous
+  Developers
+    Design first mentality
+    Avoid Over-Engineering
+    Momentum - breaking things downs smaller
+    Confidence - empowered to change code
+  Code Kata
+    A system of indifidual training exerciset 
+    Small component exercies
+
+Types of Testing
+ Software is composed of units of computation
+  Classes
+  Functions
+  Dependencies - partner services
+Unit testing verfies any of thes units are working
+Intigration testing test that units are working together
+Acceptance testing - verify from user perspective
+TDD isn't limited to one of these types of test
+TDD can include intigration and acceptance testing, 
+  may even be perferable to unit test
+Unit test are extremely fast
+Intigration test make sure things are working together
+  slower than unit test
+  often put into CI pipelines insteaed of directly used by dev
+
+Blackbox test
+  No insight into the workings of the component
+  Verify the behavior by giving it different inputs
+  Inner workings are a strong safe, we interact with it from the outside
+  Black box testing ins much less brittle
+  Internals can change and test won't be inpacted
+  Negative can be
+    A lot of dependencies in the black box have to be stood up
+
+White box testing
+  Great for testing systems with a lot of dependencies
+  We can inject mock dependencies to mock interactions
+  Negative
+    How a component get's it work done instead of verifying the work itself is correct
+    Changing implimintaiton may mean test will break as well becasue hooks are deep
+
+
+Other types of test not really related to TDD
+  Pen testing, Boundary Testing, Fuzz Testing, Smoke Testing, Stress Testing
+  A/B Testing
+
+xUnit Frameworks (named after SUnit)
+  Junit - Java
+  Mocha is inspired by xUnit family
+  py.test - python
+
+Acceptance Testing
+  Selinium, Watir
+
+System Frameworks
+  Simian Army 
+    Chaos Monkey
+    Latency Monkey - preformance
+    Janitor Monkey
+
+Testing Concepts
+Test 
+Test Suietes
+BeforeEach  (runs before any test in suite)
+AfterEach (runs after any test)
+Before and After for entire Suite
+Assert 
+  tell a test what values to expect
+  fundamental mechanism for pass fail in a test
+  ex. IsTrue, IsFalse, AreEqual, Contains, StartsWith
+Fluent Programming
+  Assertion use more readbable language to help no devs review test
+Test Runner, may be build int framework or separate
+Test runner executes test, can be Synchronous, or Async
+ Knowing if you're doing Async or Sync
+  watch for race conditions
+Writing imperfect test is better than not writing test
+
+Did any previous features break?
+How does code perform under load
+Were there breaking changes that can stop partners code from working?
+
+Wayst to make a test green
+  Fake it
+    return a contant and gradually replace until real code exist
+  Make it
+    real implimintation if it's obvious
+  Triangluation
+    Only generalize code when there are two or more examples
+
+First do simplest thing possible, start with code that works and test that are passing
+Make it run then make it right
+
+Imutable, an object can't change it's state
+  previous instance remains unchanged
+
+List in functional programming languages
+  recursive data structure, two elements, head, and tail
+
+Dependency Injection
+  An object is supplied with a dependency rather thatn creating the real one
+  Constructor Injection
+  Property Injection (setter injection)
+  Interface Injection
+  Self Contained Code vs Dependency-injected code
+  Easier to understand vs easier to test but harer to understand
+
+Test Doubles
+  Stand in object we give to the component
+  Stubs and Moks, Fakes and Spies
+  Stubs Provide canned answers to calls made during test
+  Mocks pre programmed expectation wich form a specification
+    good for testing involved communication paradigm
+  Problem with test doubles and injection is we lose the common basline
+    the code changes and the test changes, we have more uncertainty
+
+Best Practices
+Treat Test Code like Production Code
+ Readable and maintainable
+Address both positive and negative test cases
+Separate common set-up and teardown logic
+  always try to remove duplication from test code
+Focus on only Necessary values and Results
+Review Tess and Test Prctices with Team
+  Effective techniques
+  Catching bad habits
+  Common challenges that keep you from embracing TDD
+  
+
+Gotchas
+  Anti-patterns
+  Dependency problems
+  Execution Order of Test shouldn't matter
+    Test shouldn't depend on each other
+    Interdependent test cause cascading failures and false positives
+    Serial execution vs parallel execution
+  Testing Implimintaiton details
+    Testing how something is done instead of testing the results
+    You should avoide testing implimination 
+  Slow-running tests 
+    Code may be too coupled, you are having to stand up to much
+    Warning sing code is not very testable
+    If test are slow we loose benefits from TDD
+    Less Agile, we won't make changes because of long running tests
+    We won't be as agressive as we can be when we have fast tests
+
+Limitations of TDD
+  Holes in your test, there will be bugs that that got past the test
+  TDD is not enough
+    Deployment Verification
+    Network Changes
+    Intigration Problems with prod depedencies
+  Managment must buy in and support TDD otherwise won't work
+
+Questions
+  Agile is not required for TDD
+  TDD is for Req verification, Regression Catching, Lower Maintanence cost
+  TDD is usually better in an Agile process, for quick development
+  Do we really have to write our test first? What are the key thing's we're trying to do...
+    Avoid Over Engineering - Test first help
+    Momentum 
+    Confidence 
+  Agile process is customized to team and customers, not a one single process
+
+Red, Green, Refactor
+Focus on Customer, write test and code from Customers point of view
+Avoide Over Engineering
+Confidence and Momentum
+Continuous Improvement
+From Legacy, to fully supported code
+  Legacy Code - Code without legacy test
+
+
+

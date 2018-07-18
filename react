@@ -1,0 +1,359 @@
+getIntialState function
+getDefaultProps
+
+componentWillMount - right before rendering
+
+componentDidMount - right after component renders
+  Access DOM, integrate with frameworks, set timers, AJAX request
+
+componentWillReciveProps - when receiving new props, not called on intial render
+
+shouldComponentUpdate - Before render when new props or state 
+  are being recieved but not on intial render 
+  if state changes but there will be no DOM change return false from this
+
+componentWillUPdate - Imdeiately beofe rendering when 
+  new props or state are being recieved, not on intial render,
+  can't call setstate in this functino
+
+componetDidUPdate - called right after updates are rendered to the DOM, 
+  not on intial render though
+  for working on DOM after updates
+
+componentWillUnmount - right before componet is removed from the DOM
+ used for cleanup
+
+keys for dynamic components 
+
+propTypes - a map to validate props before rendering a component
+  these are only run in development mode for performance sake
+  if a propType is not required it should have field in getDefaultProps
+
+propTypes: {
+  prop1: React.PropTypes.object.isRequired,
+  prop2: React.PropTypes.func.isRequired,
+  prop3: React.PropTypes.object.isRequired,
+  prop4: React.PropTypes.object.isRequired,
+  prop5: React.PropTypes.object.isRequired
+}
+
+minified version of react runs in producion mode by default
+
+mixins - useful for "cross cutting concerns" or sharing code between components
+
+
+
+
+
+.................Redux...............
+Why use Redux?
+One Store
+Reduced Boilerplate
+Isomorphic/Universal Friendly (rendering on server)
+Immutable Store
+Hot Reloading
+Time-travel debugging
+Small api
+Magic over Boilerplate
+Flux has more boilerplate, Redux has nore magic (but not to much)
+
+
+
+........................Flux........................
+Flux is a pattern for unidirectional data flow
+All updates to app state occur via a centralized dispacher
+Unideriectional data flow (no two way binding)
+You will need a flux dispacher and a JS event library
+
+Two way binding 
+  viewmodle -> view
+  viewmodle <- view
+
+Uniderectional 
+  Action -> dispacher -> store -> React View -> Action
+
+Actions - user interactions that occur in your react component
+Dispacher - "singleton registry" that hanldes actions
+  really just a centralized list of callbacks
+  notifies everyone who cares
+stores - holds app state
+  when store changes react components update
+
+Actions encapsulate specific events that occur in the app
+Dispacher triggers a method that allows us to trigger a dispach
+  to the stores and trigger a payload of data wich is called an
+  action
+ACtion creators - dispacher helper methods, they describe all
+  actions possible in the application
+Actions happen two places, 
+  1. when user itneracts with the UI, view trigers action
+  2. server triggers something
+  (Possible 3. app itself.. say a timer or an AI actor)
+
+Action payloads have common structure of type and data
+  {
+    type: USER_SAVED
+    data: {
+      firstName: Marty,
+      lastName: McFly
+    }
+  }
+
+  Dispacher - there is a singlton meaning there is only one per app
+    dispacher dispaches actions
+    Stores register with the dispacher so they can be notified when data changes
+    dispacher has a list of callbacks it ivokes, dispaches payload from action
+
+Stores hold, app state, lgic, data retrieval
+  a store is not a model of an MVC instead it contains models
+  app can have a single store or multi stores
+  stores get updated with callbacks they register with dispacher
+  only stores are allowed to register callbacks with dispacher, NOT compoents
+  flux stores are extedned with Node's EventEmitter - allows stores to both 
+    listen to and brodcast events
+  stores have no direct setter methods, they only accept updates via callbacks
+    registered with dispacher
+  store is the only thing in applicaton that knows how to update data
+
+Core interface of Store
+1. Extend EventEmitter
+2. addChangeListener and remove ChangeListener
+3. emitChange
+
+React compoents listen to the stores, stores emmit changes via Node's event 
+emmiter
+
+Controller Views should be the components interaction with flux stores
+
+Actions make web api calls??
+
+Dispacher functions
+  register(function callback) 
+   store says run this when action happens
+  unregiester(function callback)
+   store says foreget about this action I don't care anymore
+  waitFor(array<string>ids)  
+   store says "update this store first"
+  dispach(object payload) 
+    action says "tell stores about this"
+  isDispaching() 
+    bool saying dipspacher is busy dispaching
+
+Different from Pub-Sub
+1. every payload is dispached to all registerd callbacks
+2. callbacks can wait for other callbacks
+
+
+.......Four Ways to Declare React Components........
+createClass
+ES6 Class
+  no autobinding
+  PropTypes and Default props declared separately from class declaration
+  setInitialState function not used, use constructor instead
+ES5 funcitonal stateless
+ES6 functional stateless
+
+Stateless components
+  no state, 
+  does not utilized lifecycle methods 
+  no performacne optimization
+  Benefits:
+    No class needed
+    avoide 'this' keyword
+    enforce best practice of stateless Presentational Components
+    simpler, less noise
+    with desructuring all props used are declared in a simple way
+     allowing for code completion and intellisense also
+    bloated compoents are obvious
+      descructuring props shows if there are to many props
+    Easy to understand
+    Easy to test
+    Performance will come down the road
+
+When to use Class components:
+ need State
+ need reference to DOM
+ need lifceycle mehtods
+ using child functions
+  functions within functions can hurt performance in stateless func components
+  every render creates a new instance of that function
+  what exactly do you mean by nesting funtions??
+
+Other ways to create compoents
+  Object.create
+  Mixins
+  Parasitic Component
+  StampIt
+  bit.ly/react-define-component
+
+Container Components 
+  concerned with behaivior
+  little to no markup
+  in redux usually created through redux connect function at bottom of file
+  pass data and actions down
+  knows about redux
+  typically stateful
+
+
+Presentation
+  Nearly all markup
+  receives data via props
+  does't know aobut redux
+  typically statless function
+
+other names
+ conainer vs presentaitons
+ smart vs dumb
+ stateful vs stateless
+ controller view vs view
+
+If you notice some components do't use props they recieve but merely forward 
+them down it's a good time to introduce container components
+
+Container compoents do not only need to be at the top, sometimes they are useful
+inside other components
+
+
+...........More Redux............
+Why use Redux?
+Complex data flows
+Inter-component communication
+Non-heirarchical data (?)
+Many actions (a lot of things going on)
+Same data used in multiple places
+ same data but not a simple parent child relationship
+"...if you aren't sure you need it, you don't need it."
+
+3 core pricnciples
+1. All state is in single imutalbe store
+2. Only way to change state, emmit an action
+3. State is changed by pure functions, aka Reducers
+
+Flux Redux commonality
+Unidirection data flows - Data down, Actions up
+Finite set of actions that define how state changes
+Both have stores, Flux has muti, Redux has one
+
+Redux New conepts
+Reducers state + action = new state
+  pure functions
+Containers - special container React components
+  necessary logic for marshalling data and actions they pass down to
+  dumb components via props
+Immutability - redux store is imutable 
+  must work with imutable data in reducers
+
+Redux does not have a dispacher at all like Flux does, each action is handled
+by one or more Reducers wich update the single store
+
+
+Action -> Store
+Store -> Reducers
+Store <- Reducer 
+Store -> React -> Action
+
+Flux 
+Stores contain state and change logic
+Multi Stores
+Flat and disconnected stores
+dispacher at center of applicaton connects actions to stores
+you have to explicitly subscribe your react views to change handlers
+flux you manipulate state directly, it imutable
+
+Redux
+Store and change logic are separate
+  all logic exist in Reducer
+One Store
+  easier to deal with state interaction 
+  one source of truth
+Single store with hierarchical reducers
+  gives you nesting of your reducers (eh?)
+No dispacher
+ reduxes singel store passes actions to the reducers you define
+ it does this trhough a root reducer you define
+React redux - library that connects your react components to the redux store
+ automatically 
+ has a connect method that generates a top level react component that's  
+  connected to your actions in store, everytime the store state changes 
+  a function tirggers a re-render on your component
+state is imutable - instead of changing state you return an updated copy of 
+  state
+
+Action is triggered has type and data
+Reducer checks the action type and uses data to return new store
+Store is updated
+React-redux notifies relavant components
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+..........Not React specific...........
+
+What does my env need to do?
+Automated Testing
+Linting
+Minification
+Bundling
+JSX compilation
+ES6 transpiling
+One Command!
+
+eslint note:
+0 off
+1 warning
+2 error
+
+testSetup
+process.env.NODE_ENV = 'test';
+
+//npm script trick - run multiple scripts in parallel
+"scriptName" : npm-run-all --parallel script1 script2 script3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

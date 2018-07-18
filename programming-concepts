@@ -1,0 +1,71 @@
+Procedural - a type of imperative programming in which the program is build from
+  one or more procedures, no direct association between your data types and your functions,
+  modern processors provide hardware to support prodeurual programming
+
+Imperative - giving an authoritative command 
+  mutate state whenever we feel like it
+  imperative programming focuses on describing how the program should operates, most 
+  describe a programm as a list of commands telling it how to do something
+  most imperative programming languages are also proceural allowing you to separate
+  code into funcitons/subroutines, or mini programss you cann and return from
+  assembly is an example of an imperative non-proceural programming language
+  imperative programmin can use GOTO commands to send you to some other part of the
+  program, but thes are not the same as proceures
+
+
+Proceure vs Method vs Function
+  Procedure, function, and methods are not strict ideas but gererally...
+    Procedures are sub programs that modify state (side effects) but don't 
+      necessairly take any inputs and don't return anything... aka subroutines
+    Methods are functions that close over a set of varialbes. They take zero 
+      or more inputs and may change state of the thing they are a part of, an object 
+      or a closure/scope. They may or may not return a value
+    Functions take zero or more inputs and can return values, they may modify
+      state outside of the function (side effects), if they simply take input and 
+      return values without causing side effects they are calle Pure Functions
+
+Structural programming
+  old term, emcompasses funtional and proceural programming, using control flow
+  structures rather than jumping around directly from instruction to instruction
+  (goto style)
+  if/then/else/elif and do/while/until/for-loops are structured programming 
+  conepts
+
+Fuctional programming 
+  funtions as first class element. Higher order functions (funtions can return
+  functions) are a thing. Functions are pure: given an input return same output 
+  always. 
+  The ability to treat functions as values
+  Funtional style programming concerns it self with the combination of functions
+  needed to tranform an initial value to a final output
+  Funtional programming is a subset of delariative programming
+
+Declarative programming - describe what you want to do now how to do it
+
+
+Encasulation can mean two things
+  restricting access to the objects components
+  a language construct that facilitates bundling of data with methods 
+    operation on data
+
+Orthogonality in programming desing is the bablity to use various language features
+  in arbitrary combination with consiten resutls. 
+  When you execute an instruction nothing but that instruction happens
+
+
+
+
+"Funtional programming is like describing your problem to a mathamatician. 
+Imperative programming is like giving instuctions to an idiot.""
+
+..............Object Oriented is Bad lecture................
+Proceural Imperative - the default way to program
+  problme, shared state can get out of hand
+
+answers to problem:
+procedural & functional (minimize state)
+object oriented and imperative (segregate state)
+object oriented and functional (do both)
+ Use functional ideas to miniminze state
+ whatever is left over separate into separate units of encasulation
+

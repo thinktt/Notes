@@ -1,0 +1,31 @@
+Flask has:
+  Jinga 2
+  Werkzeug (HTTP Routing)
+  Model, View Controller
+  Blueprints 
+  Dev Server, debugger
+  Unit testing support
+
+Model
+  sqlAlchemy
+  slqLite3
+Template (Calle Views in MVC)
+  Html 
+  Jinga 2
+View (Controllers in MVC)
+  A function taht generate HTTP responses for a HTTP request
+  Mapped to one or more URLsd
+
+  @app.errorhandler(404)
+  @app.errorhandler(505)
+  
+Request Objecet
+  form 
+  args
+  cookies
+  headers (dictionary like obj)
+  files
+  method
+  
+
+

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Webpack Testing</title>
+  <style>[v-cloak] {display: none;}</style>
+  <link rel = "stylesheet" type = "text/css" href = "/css/animate.css" />
+</head>
+<body>
+
+<h1>Well hi there</h1>  
+
+<script type="module">
+  import data from '/test.js';
+  data.x = 20; 
+  console.log(data);
+</script>
+
+<script>
+  let x = 10;
+  var y = 20;
+</script>
+
+</html>

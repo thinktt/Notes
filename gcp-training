@@ -1,0 +1,307 @@
+Regions - colletcion of zones
+Zone 
+  Isolated deployment areas in a region
+  A unit of compute power, high bandwidth
+  you can spread your resources across multiple zones
+Regions are in a certain space
+  you may pick a region for, regulation, speed
+Points of Precence?
+
+Custom virtual-machine types
+Preimtable Instances
+  SETI like copute time 
+  grabbing extra compute time 
+  80% discount
+
+Stackdriver
+  Monitoring
+  Logging
+  Debug
+  Error Reporting
+  Trace
+
+Projects 
+  Abstraction that owns eveyrthing you do on GCP
+  Security boundry
+  Network you are working with
+  Billing
+  Uniquely named
+  Project id a-name-like-this
+  ID number (mostly not used by you)
+
+Identity and Access Manament (IAM)
+  Who - can do what - on what resources
+  Primative Roles - Owner, Editer, Viewer
+    Owner can do anything
+  Now you can define "curate roles"
+    Google Groups, scopes
+      compute.instance.delete
+      compute.instces.get
+      compute.instaces.list
+      compute.instacne.start
+      compute.instaces.stop
+  Deny everything first and selectively allow
+    Levels
+      Organizaton 
+      Project
+      Resources 
+    If parent policy is less restrictive, it overides 
+      more restrictive policy
+    Service Account - privde ad identify for carryoon out server-to-server ineractions
+      used ot authenticat from on serivce to anotehr
+      can be used primiteve and curated roles
+      idetifies with and email adress
+      authentiated with keys
+      Small grained security using resource allocation
+
+Cloud Console
+Cloud Source Repositories
+Cloud Shell
+Cloud SDK
+  glcoud, gutil, bq
+  gcloud compute instances
+Cloud APIs
+  mostly json, some yaml
+Cloud Console Mobile App
+  Manage virtual machines from your phone
+APIs Explorer
+  Wizard like interface that let's explor any GCP API
+  Brose through available APIs
+  See methods avilable for each API and documentation
+  Execute request for any method and see responses in real time
+  Make authenticated and uathorized API calls with ease
+  You may need to turn APIs on
+Client Libarires
+  Packages for whatever eviroment you know for a language
+
+Billing
+  ability to label things and have them pop up on billing
+
+OAuth 
+  Three Leg 
+  Two Leg
+
+App Engine and Cloud Datastore
+  Opinionated Architecture
+
+IaaS Raw 
+  compute, storage, and network
+  granual control
+
+App Engine (PaaS) 
+  Java, Go, PHP, Python
+  Standard enviroment
+    specific versions 
+    no writing to local file systems
+    request timeouts at 60 seonds
+    limit on 3rd party software installation
+    task queues
+    memcache 
+      shared memory between the instances
+      one network hop away
+  App Engine flexible Enviroment
+    can do node
+    can take minutes to load
+    scaling, manual, automatic
+    can run Node
+    ssh access
+    uses containers in the background
+  Google Cloud Endpoints
+  Google Cloud Datastore
+    build a database system that can respond as fast as possible
+    only suports access through indexes
+    everything you put in has an index
+    two indexes for everything, front and back
+    great for reading things quickly
+    write speed is slow, every write every index musst be updated
+    scalable noSQL DB
+    you should care about schemas though and how system works
+    acid transactions??
+
+Cloud Storage
+  bukets, binary large objects, just storage
+  simple administration
+  redundant
+  immuatable?
+  data encrtion in fling and at rest
+  data coming in is free data out cost you 
+  four storage classes give customers flexibility
+    Mutil-regional, Regional
+    Nearline, Coldline 
+      medium and long term archiving
+    Coldline
+    All the same for durability
+  Extremely durable storage
+  Regional bukets
+  Objct versioning
+  Offline iports (third party)
+  ACLs (Access Control List)
+  Imutable, can't change an object
+  bukcets must be uniquely named
+  google requires you to verify domain name buckets
+  gsutil rsync . gs://bucket-name
+  can map static content to a bucket
+Cloud Bigtable
+  a really really big table of data
+  scales insaney high
+  sustains 10 thousand queries per second
+  fully managed NoSQL wided-column
+  datbase service for large workload
+  replicated storage
+  data encryption in flight and at rest
+  role based ACL
+  data an be read from and written to cloud Bitable 
+  can stand up to batch processing
+Dataproc
+On-premise
+
+CloudSQL
+  Offers MySQL and PostgreSQL(Beta)
+  Automatic replcation
+  Managed backups
+  Vertial scaling (red and write)?
+  Horizontal scaling (read)?
+
+Spanner
+  Distributed relational database is super hard
+  Acid transactions?
+  Global, relational, transactional database
+
+DB Use Cases
+  Spanner
+  Cloud Data Store
+    Read read read
+  Cloud storage 
+    store anything
+
+Container engine
+  container lightwheight context that runs on linux kernel
+  containers come to life in miliseconds
+  a container can have one app running only has dependencies it needs
+  isolation and speed of deployment
+  why use them containers
+    consitency, development, testing, production
+    loose coupling between app aon os layer
+    much sipler to migrate workloads between on prmeinse and cloud env
+    support agile dev and operations
+  Kubernetes 
+    Open Source conainer cluster orchestration system
+    based on Google's experience over 10+ years
+    built for multi-cloud world
+    public, private, hybrid
+    workload portablility
+    rolling updates
+    persistent storage
+    multi-zone clustesr
+    load balancing
+    autoscaling
+  Container Engine is Googles Kubernetes offering
+  Is not a PaaS it's inbetween an IaaS and a PaaS
+  a system for running containers as Google has found works
+  works on top of compute engine
+  decouling operations and dev cocerns
+  Container Builder
+    Create Docker catainers images form app code in Cloud Storage
+    Google Container Registry
+      secure, priveate, docker image storage
+  Can federate clustsers in multiple places/clouds
+  Clusters in Kubernetes is evolving to use mixed locations
+
+Compute Egine
+  Hight CPU, high memoery, standard and shared-core machines types
+  Local SSD
+    no network latency, can do fast preformance but no snapshot type features
+  Snapshots, only snapshots what you have, does diffs for next snapshot
+    gcloud compute disk snapshot snapshot-name
+  Google has it's own internal DNS so you can just ask for your named server
+  metadata for project and for instances
+
+Networking
+  Software defined networking
+  Subnetting becoes boundaries for resources
+  tag servers and rules will apply by tag
+Cloud DNS
+Cloud Inerconnect
+Cloud Virtual Networks
+  deafault network let's things connect
+Fine-grained networking policies
+granular IP address range selection
+Routes
+Firewalls
+
+Load Balancing
+  Balance based traffic acrosos multiple compute engine regions
+  Global, eteranl Ip address routes traffic
+  Scalabl, requires no prewarming and privdes resiiliaece,
+    and fault tolerance
+Cloud CDN 
+  Use Googles globally distributed edge caches to chache HTTP
+
+Stackdriver 
+  Integrated monitoring and logging diagnostics
+  Monitoring, logging, debugging, so on
+
+Deployment Manager
+  Infastructure managent service
+  Create a .yaml template describing your env
+  provides repeatable deployments
+
+Cloud Functions
+  
+BigQuery
+  Analytis 
+    daabase, stream data at 100,000 rows per second
+    exact opposite of data store
+    BQ has no indices, always scans all the data in paralell
+    column based storage
+    fully managed no ops service
+    storage cost measured by one GB per month
+    BQ is a good place to wharehouse your data
+    useses SQL 2011 now
+    you can ask questions that you couldn't ask before
+    they don't charge for compute resources, storage of data
+    and number of bytes to scan for query
+    store things corectly and you can just search what you want and 
+      save money
+
+Pub/Sub
+  Supports many-to-many saychronous messaging
+  push pull supbscritions to topics
+  guarnateed at least once delivery
+  buffered, massivly scalable
+
+Dataflow
+  Process data using compute engine instances
+  clusters are sized for you
+  Autmated scalin , no instace provisioning required
+  Google figures out what you need for what you're trying to do
+  Write code onc and get batch and streaming
+  ETL(extract/trafor/load)
+
+Dataproc: managed Hadoop
+  Fast easy managed way to run Haddop and Saprk/Hive/Pig on GCP
+  cerate clusters in 90 sec or less
+  scale clusers up and down even when jobs are running
+  can use preimtable instances for the cluster
+
+Datalab
+  Interactive tool for large scale data exploration, transormation, analysis, visualization
+  Integrated open source
+  A notebook with entries
+  way to experiment with cloud scale big data stuff?
+
+Machine learning
+  we know how to get machines to learn from teaching
+
+
+
+
+
+
+
+
+
+
+
+
+

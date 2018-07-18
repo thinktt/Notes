@@ -1,0 +1,40 @@
+# delete gcp deployments
+gcloud deployment-manager deployments delete example-deployment
+
+
+# encryption with kms 
+gcloud kms encrypt --key secrets-key --keyring rouge-keys --location global --plaintext-file tbc.txt --ciphertext-file tbc.txt.enc
+
+gcloud kms encrypt --key secrets-key --plaintext-file proxykey --ciphertext-file proxykey.enc
+
+gcloud kms decrypt --key secrets-key --keyring rouge-keys --location global --plaintext-file - --ciphertext-file tbc.txt.enc
+
+
+gsutil cp gs://exalted-tape-main-bucket/tbc.txt.enc.b64 - | base64 -d | gcloud kms decrypt --key secrets-key --keyring rouge-keys --location global --plaintext-file - --ciphertext-file -
+
+
+echo Howdy! | gcloud kms encrypt --key secrets-key --keyring hd-engineering --location global --plaintext-file - --ciphertext-file - | base64 
+
+
+wget https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-162.0.1-linux-x86_64.tar.gz
+tar xvzf google-cloud-sdk-162.0.1-linux-x86_64.tar.gz
+PATH=./google-cloud-sdk/bin/:$PATH
+
+./google-cloud-sdk/install.sh
+
+wget https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-162.0.1-linux-x86_64.tar.gz
+tar xvzf google-cloud-sdk-162.0.1-linux-x86_64.tar.gz
+
+cat /etc/ssl/private/proxykey.enc | base64 -d | gcloud kms decrypt --key secrets-key --keyring hd-engineering --location global --ciphertext-file - --plaintext-file /etc/ssl/private/proxykey 
+ 
+
+gcloud kms encrypt --key secrets-key --keyring [YOUR_PROJECT_NAME] --location global --plaintext-file [YOUR_PRIVATE_CERTIFICATE_KEY] --ciphertext-file | base64 | gsutil cp - gs:///hd-engineering-certs/proxykey.enc
+
+//connect to a cloud proxy instance
+cloud_sql_proxy -instances hd-engineering:us-central1:forecasttool=tcp:3306
+cloud_sql_proxy -instances hd-budgeting:us-east1:forecasttool=tcp:3306
+cloud_sql_proxy -instances hd-engineering:us-central1:cado=tcp:3306
+cloud_sql_proxy -instances hd-engineering:us-central1:sarah=tcp:3306
+
+
+

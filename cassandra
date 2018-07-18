@@ -1,0 +1,33 @@
+keyspace -> table -> partition
+
+Possible Consitency
+Quarum - most the nodes have the write
+All - All the nodes responsible have the write
+Any
+One
+Two
+Three
+
+nodetool repair (maintenance for cluster?)
+Eventual consitency Database
+
+For strong consitency you need this formual: 
+(Write consitency + Read Consitency) > REplication Factor
+
+Consitency with multiple Data Centers
+EACH_QUORUM
+LOCAL_QUORUM
+LOCAL_ONE
+
+CQL
+numeric data types
+  bigint, decima, doulb, float, int, varint
+strings
+  ascii, text, varchar (last two are the same)
+timestamp, timeuuid
+Boolean, uuid, inet, blob
+
+No hypehns in keynames
+no spaces in keynames
+double quotes for intial digist
+mixed case alsso requires quotes

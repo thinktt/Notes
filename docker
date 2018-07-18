@@ -1,0 +1,32 @@
+docker commit CONTAINER_ID IMAGE_NAME
+docker history IMAGE_NAME
+
+//save and load images to and from files
+docker save -o IMAGE_TAR_FILE
+docker load -i IMAGE_TAR_FILE
+
+//docker containers usually run one process per container
+//run a container and send it a command
+docker run -d ubuntu /bin/bash -c "ping 8.8.8.8 -c 30"
+
+//start a container and keep it running
+docker run -d -t ubuntu 
+
+
+
+//see top running proccesses inside a container 
+docker top
+
+//attach to a conatiner
+//for shell access bash has to be pid1
+docker attach CONTAINER_ID
+
+//shell into non-bashed container
+docker exec -it CONTIANER_ID bash
+
+//exit container but leave it running
+Ctrl + P + Q
+
+//get data about your container
+docker inspect
+
